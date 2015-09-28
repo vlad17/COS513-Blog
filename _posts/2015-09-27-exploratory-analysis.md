@@ -20,6 +20,20 @@ The insufficiency in our data source here leads to other interesting directions 
 
 In the future, we may also look at other indices: DJIA, FTSE, DAX, Vanguard, etc. Finally, one more option would be to look at currency exchange rates. GDELT's wealth of international data would be very predictive here.
 
+## Previous Work
+Previous work as looked at forecasting various financial data with a broad array of techniques from traditional machine learning approaches to finding new feature sets from Wikipedia, Google, and the news.
+
+- [Stock Prices, News, and Business Conditions](http://www.nber.org/papers/w3520.pdf)
+  - Analyzing the effect of news on stock prices: ''Fundamental macroeconomic news has little effect on stock prices... Effect of news... depends on the varying responses of expected flows relative to equity discount rates'' 
+- [Big Data Gets Bigger: Now Google Trends Can Predict The Market](http://www.forbes.com/sites/davidleinweber/2013/04/26/big-data-gets-bigger-now-google-trends-can-predict-the-market/)
+  - Using Internet search data to predict pricing data: ''the team found a strong correlation between Internet searches for a company?s name and its trade volume, the total number of times the stock changed hands over a given week... But the Google data couldn't predict its price'' 
+- [Forecasting Foreign Exchange Rates with Neural Networks](http://arxiv.org/pdf/1404.1996v1.pdf)
+- [Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and ^STI](http://liawww.epfl.ch/uploads/project_reports/report_282.pdf)
+  - Using GDELT ''to highlight the various impacts of June 2013
+Southeast Asian haze and December 2013 Little India riot on Singapore'' 
+- [SVM based models for predicting foreign currency exchange rates](http://www.researchgate.net/publication/4047521_SVM_based_models_for_predicting_foreign_currency_exchange_rates)
+  - Using SVMs to predict foreign exchange rates 
+
 ## The Data
 
 #### GDELT 
@@ -60,18 +74,3 @@ We retrieved stock pricing information from Yahoo Finance for S&P 500 (^GSPC) fr
 ## Cool image example
 
 ![Dummy image]({{ stie.url }}/assets/dummy-image.jpg){: .center-image }
-
-## Previous Work
-Previous work as looked at forecasting various financial data with a broad array of techniques from traditional machine learning approaches to finding new feature sets from Wikipedia, Google, and the news.
-
-- [Stock Prices, News, and Business Conditions](http://www.nber.org/papers/w3520.pdf)
-  - Analyzing the effect of news on stock prices: ''Fundamental macroeconomic news has little effect on stock prices... Effect of news... depends on the varying responses of expected flows relative to equity discount rates'' 
-- [Big Data Gets Bigger: Now Google Trends Can Predict The Market](http://www.forbes.com/sites/davidleinweber/2013/04/26/big-data-gets-bigger-now-google-trends-can-predict-the-market/)
-  - Using Internet search data to predict pricing data: ''the team found a strong correlation between Internet searches for a company?s name and its trade volume, the total number of times the stock changed hands over a given week... But the Google data couldn't predict its price'' 
-- [Forecasting Foreign Exchange Rates with Neural Networks](http://arxiv.org/pdf/1404.1996v1.pdf)
-- [Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and ^STI](http://liawww.epfl.ch/uploads/project_reports/report_282.pdf)
-  - Using GDELT ''to highlight the various impacts of June 2013
-Southeast Asian haze and December 2013 Little India riot on Singapore'' 
-- [SVM based models for predicting foreign currency exchange rates](http://www.researchgate.net/publication/4047521_SVM_based_models_for_predicting_foreign_currency_exchange_rates)
-  - Using SVMs to predict foreign exchange rates 
-
