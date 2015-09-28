@@ -71,6 +71,69 @@ The row data file is a csv with around 57 columns that indicate several variable
 
 We retrieved stock pricing information from Yahoo Finance for S&P 500 (^GSPC) from January 1, 2005 to December 31, 2005. This data included the S&P's opening, high, low, closing, and adjusted closing price for each date in this range. We also looked at GDELT data for 2005. 
 
+## R Exploration
+
+Import libraries
+
+{% highlight R %}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(lattice)
+library(quantmod)
+{% endhighlight %}
+
+Read the GDELT news data from 2005
+
+{% highlight R %}
+news_data <- read.csv("gdelt_2005.csv", header=FALSE, sep='\t') # read data
+news_data$date <- as.Date(as.character(news_data$SQLDATE), "%Y%m%d")
+colnames(news_data) <- c("GLOBALEVENTID", "SQLDATE", "MonthYear", "Year", "FractionDate", "Actor1Code", "Actor1Name", "Actor1CountryCode", "Actor1KnownGroupCode", "Actor1EthnicCode", "Actor1Religion1Code", "Actor1Religion2Code", "Actor1Type1Code", "Actor1Type2Code", "Actor1Type3Code", "Actor2Code", "Actor2Name", "Actor2CountryCode", "Actor2KnownGroupCode", "Actor2EthnicCode", "Actor2Religion1Code", "Actor2Religion2Code", "Actor2Type1Code", "Actor2Type2Code", "Actor2Type3Code", "IsRootEvent", "EventCode", "EventBaseCode", "EventRootCode", "QuadClass", "GoldsteinScale", "NumMentions", "NumSources", "NumArticles", "AvgTone", "Actor1Geo_Type", "Actor1Geo_FullName", "Actor1Geo_CountryCode", "Actor1Geo_ADM1Code", "Actor1Geo_Lat", "Actor1Geo_Long", "Actor1Geo_FeatureID", "Actor2Geo_Type", "Actor2Geo_FullName", "Actor2Geo_CountryCode", "Actor2Geo_ADM1Code", "Actor2Geo_Lat", "Actor2Geo_Long", "Actor2Geo_FeatureID", "ActionGeo_Type", "ActionGeo_FullName", "ActionGeo_CountryCode", "ActionGeo_ADM1Code", "ActionGeo_Lat", "ActionGeo_Long", "ActionGeo_FeatureID", "DATEADDED")
+news_data_ts <- xts(news_data[c("GoldsteinScale", "NumMentions", "AvgTone")], order.by=news_data$date)
+news_data_mean_ts <- aggregate(news_data_ts, index(news_data_ts), "mean")
+
+{% endhighlight %}
+
+Read the S&P 500 price data from 2005
+
+{% highlight R %}
+price_data <- read.csv("sp500_2005.csv", header=TRUE, sep=',') # read data
+price_data <- as.data.frame(price_data)
+price_data_ts <- xts(price_data[,-1], order.by=as.Date(price_data$Date))
+chartSeries(price_data_ts, name="S&P 500")
+{% endhighlight %}
+
+Histograms for the Goldstein Scale, Number of Mentions and Average Tone of news articles
+
+{% highlight R %}
+# Histogram for Goldstein Scale
+ggplot(news_data,aes(x=GoldsteinScale)) + geom_histogram(binwidth=0.5)
+# Histogram for Number of Mentions
+ggplot(news_data[news_data$NumMentions<30,],aes(x=NumMentions)) + geom_histogram(binwidth=1)
+# Histogram for Average Tone
+ggplot(news_data,aes(x=AvgTone)) + geom_histogram()
+{% endhighlight %}
+
+
+Histograms for daily return of S&P 500 price
+
+{% highlight R %}
+# Histogram for Daily Return
+price_ret <- log(price_data_ts$Adj.Close) - log(lag(price_data_ts$Adj.Close, 1))
+colnames(price_ret) <- "DailyReturn"
+ggplot(price_ret,aes(x=DailyReturn)) + geom_histogram()
+{% endhighlight %}
+
+
+Volume of trading vs Average Number of Mentions
+
+{% highlight R %}
+# Histogram for Daily Return
+merged_data <- merge(price_data_ts$Volume, news_data_mean_ts)
+plot(coredata(merged_data$Volume), coredata(merged_data$NumMentions))
+{% endhighlight %}
+
+
 ## Cool image example
 
 ![Dummy image]({{ stie.url }}/assets/dummy-image.jpg){: .center-image }
