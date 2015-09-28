@@ -52,7 +52,7 @@ To achieve that, GDELT Project monitors the world's broadcast, print, and web ne
 The GDELT provides a knowledge graph that describes not only “what” happened but “how” it happened. Accordingly,  as the GDELT Global Knowledge Graph processes each news article it extracts a list of all people, organizations, locations, and themes from that article and concatenates them together to form a unique "key" that represents that particular combination of names, locations, and themes. All articles containing that same unique combination of names, locations, and themes, regardless of how similar the rest of the text is, are grouped together into a "nameset". The Graph provides a daily intensity weighting which essentially weights each day towards those that occur in the greatest diversity of contexts, biasing towards days with many different contexts being discussed. It is relatively immune to sudden massive bursts of coverage (such as from a major sudden situation) and instead tends to capture the broadest temporal trends. This can be used to evaluate the magnitude of events/turmoil witness each day, in every country.
 
 
-![Turmoil in the first 7 days of July](/assets/First_Week_July_15.png){: .center-image }
+![Turmoil in the first 7 days of July](/assets/First_Week_July_15.PNG){: .center-image }
 
 
 GDELT releases a raw data file every day that average about **250k rows (approx. 3 rows per second)**.
