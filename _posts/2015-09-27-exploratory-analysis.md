@@ -6,14 +6,6 @@ tags : [exploratory-analysis,data]
 ---
 {% include JB/setup %}
 
-{% highlight text linenos %}
-
-require 'yaml'
-require 'rubygems'
-require 'stringex'
-
-{% endhighlight %}
-
 # Week 1: Exploratory analysis
 
 Our goal is to explain stock market behavior by relying on non-macroeconomic news sources. Using macroeconomic data is an obvious (and previously successful) approach, but using the highly diverse and worldwide event data from our dataset may reveal more interesting explanations for stock market behavior.
