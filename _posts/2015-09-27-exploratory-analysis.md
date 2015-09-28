@@ -53,12 +53,6 @@ The row data file is a csv with around 57 columns that indicate several variable
 
 We retrieved stock pricing information from Yahoo Finance for S&P 500 (^GSPC) from January 1, 2005 to December 31, 2005. This data included the S&P's opening, high, low, closing, and adjusted closing price for each date in this range. We also looked at GDELT data for 2005. 
 
-#### Initial GDELT analysis
-
-#### Initial stock analysis
-
-#### Initial cross-dataset exploration
-
 ## Cool image example
 
 ![Dummy image]({{ stie.url }}/assets/dummy-image.jpg){: .center-image }
