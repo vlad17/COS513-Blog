@@ -6,6 +6,14 @@ tags : [exploratory-analysis,data]
 ---
 {% include JB/setup %}
 
+{% highlight text linenos %}
+
+require 'yaml'
+require 'rubygems'
+require 'stringex'
+
+{% endhighlight %}
+
 # Week 1: Exploratory analysis
 
 Our goal is to explain stock market behavior by relying on non-macroeconomic news sources. Using macroeconomic data is an obvious (and previously successful) approach, but using the highly diverse and worldwide event data from our dataset may reveal more interesting explanations for stock market behavior.
@@ -75,17 +83,20 @@ We retrieved stock pricing information from Yahoo Finance for S&P 500 (^GSPC) fr
 
 Import libraries
 
-{% highlight R %}
+{% highlight r %}
+
 library(ggplot2)
 library(dplyr)
 library(tidyr)
 library(lattice)
 library(quantmod)
+
 {% endhighlight %}
 
 Read the GDELT news data from 2005
 
-{% highlight R %}
+{% highlight r %}
+
 news_data <- read.csv("gdelt_2005.csv", header=FALSE, sep='\t') # read data
 news_data$date <- as.Date(as.character(news_data$SQLDATE), "%Y%m%d")
 colnames(news_data) <- c("GLOBALEVENTID", "SQLDATE", "MonthYear", "Year", "FractionDate", "Actor1Code", "Actor1Name", "Actor1CountryCode", "Actor1KnownGroupCode", "Actor1EthnicCode", "Actor1Religion1Code", "Actor1Religion2Code", "Actor1Type1Code", "Actor1Type2Code", "Actor1Type3Code", "Actor2Code", "Actor2Name", "Actor2CountryCode", "Actor2KnownGroupCode", "Actor2EthnicCode", "Actor2Religion1Code", "Actor2Religion2Code", "Actor2Type1Code", "Actor2Type2Code", "Actor2Type3Code", "IsRootEvent", "EventCode", "EventBaseCode", "EventRootCode", "QuadClass", "GoldsteinScale", "NumMentions", "NumSources", "NumArticles", "AvgTone", "Actor1Geo_Type", "Actor1Geo_FullName", "Actor1Geo_CountryCode", "Actor1Geo_ADM1Code", "Actor1Geo_Lat", "Actor1Geo_Long", "Actor1Geo_FeatureID", "Actor2Geo_Type", "Actor2Geo_FullName", "Actor2Geo_CountryCode", "Actor2Geo_ADM1Code", "Actor2Geo_Lat", "Actor2Geo_Long", "Actor2Geo_FeatureID", "ActionGeo_Type", "ActionGeo_FullName", "ActionGeo_CountryCode", "ActionGeo_ADM1Code", "ActionGeo_Lat", "ActionGeo_Long", "ActionGeo_FeatureID", "DATEADDED")
@@ -96,44 +107,66 @@ news_data_mean_ts <- aggregate(news_data_ts, index(news_data_ts), "mean")
 
 Read the S&P 500 price data from 2005
 
-{% highlight R %}
+{% highlight r %}
+
 price_data <- read.csv("sp500_2005.csv", header=TRUE, sep=',') # read data
 price_data <- as.data.frame(price_data)
 price_data_ts <- xts(price_data[,-1], order.by=as.Date(price_data$Date))
 chartSeries(price_data_ts, name="S&P 500")
+
 {% endhighlight %}
 
 Histograms for the Goldstein Scale, Number of Mentions and Average Tone of news articles
 
-{% highlight R %}
+{% highlight r %}
+
 # Histogram for Goldstein Scale
 ggplot(news_data,aes(x=GoldsteinScale)) + geom_histogram(binwidth=0.5)
+
+{% endhighlight %}
+
+![Goldstein scale filename]({{ stie.url }}/assets/Histogram_Goldstein_Scale.png){: .center-image }
+
+{% highlight r %}
+
 # Histogram for Number of Mentions
 ggplot(news_data[news_data$NumMentions<30,],aes(x=NumMentions)) + geom_histogram(binwidth=1)
+
+{% endhighlight %}
+
+![Num mentions filename]({{ stie.url }}/assets/Histogram_Num_Mentions.png){: .center-image }
+{% highlight r %}
+
 # Histogram for Average Tone
-ggplot(news_data,aes(x=AvgTone)) + geom_histogram()
+# ggplot(news_data,aes(x=AvgTone)) + geom_histogram()
+
 {% endhighlight %}
 
 
 Histograms for daily return of S&P 500 price
 
-{% highlight R %}
+{% highlight r %}
+
 # Histogram for Daily Return
 price_ret <- log(price_data_ts$Adj.Close) - log(lag(price_data_ts$Adj.Close, 1))
 colnames(price_ret) <- "DailyReturn"
 ggplot(price_ret,aes(x=DailyReturn)) + geom_histogram()
+
 {% endhighlight %}
 
+![Daily return filename]({{ stie.url }}/assets/Histogram_Daily_Return.png){: .center-image }
 
 Volume of trading vs Average Number of Mentions
 
-{% highlight R %}
-# Histogram for Daily Return
+{% highlight r %}
+
+# Volume of trading vs Average Number of Mentions
 merged_data <- merge(price_data_ts$Volume, news_data_mean_ts)
 plot(coredata(merged_data$Volume), coredata(merged_data$NumMentions))
+
 {% endhighlight %}
 
+![Daily return filename]({{ stie.url }}/assets/Volume_vs_Num_Mentions.png){: .center-image }
 
-## Cool image example
+There seems to be almost no correlation between the number of mentions and the price data.
 
-![Dummy image]({{ stie.url }}/assets/dummy-image.jpg){: .center-image }
