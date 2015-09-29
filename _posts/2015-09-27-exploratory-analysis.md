@@ -124,15 +124,13 @@ The row data file is a csv with around 57 columns that indicate several variable
 
 The CAMEO code enables for numeric categorization of events. Since the dimensionality of ``events that can occur" is very large, the CAMEO system enables compactification and reduction of this space into something more analyzable. CAMEO improves upon previous event categorization schemes, WEIS and COPDAB. Features:
 
-![Code 190 Map](/assets/code_190_map.png){: .center-image }
-
-#### Stock Market Information
-
 1. It relies on WordNet synsets to automatically codify events
 2. Supports state and non-state actors, as well as regional and ethnic categorization.
 3. Location information makes sense in the context of a cameo label
 
 ![Example CAMEO label]({{ stie.url }}/assets/cameo-example.png){: .center-image }
+
+![Code 190 Map](/assets/code_190_map.png){: .center-image }
 
 ## Exploratory Analysis
 
