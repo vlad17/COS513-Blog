@@ -127,7 +127,7 @@ The CAMEO code enables for numeric categorization of events. Since the dimension
 ![Code 190 Map](/assets/code_190_map.png){: .center-image }
 
 #### Stock Market Information
-=======
+
 1. It relies on WordNet synsets to automatically codify events
 2. Supports state and non-state actors, as well as regional and ethnic categorization.
 3. Location information makes sense in the context of a cameo label
@@ -140,14 +140,164 @@ We retrieved stock pricing information from Yahoo Finance for S&P 500 (^GSPC) fr
 
 ### Delving into GDELT
 
-GDELT space is a lot of categorical variables (see below). 
+GDELT space is a lot of categorical variables (see below R Exploration section for the exact column names)
 
-describe possible distances
-need for euclidean product
-locate different way of reducing dimensionality
-just use catogires directly in model (indicator == category + weight).
+{% highlight mathematica %}
 
-## R Exploration
+cols = {"GLOBALEVENTID", "SQLDATE", "MonthYear", "Year", 
+   "FractionDate", "Actor1Code", "Actor1Name", "Actor1CountryCode", 
+   "Actor1KnownGroupCode", "Actor1EthnicCode", "Actor1Religion1Code", 
+   "Actor1Religion2Code", "Actor1Type1Code", "Actor1Type2Code", 
+   "Actor1Type3Code", "Actor2Code", "Actor2Name", "Actor2CountryCode",
+    "Actor2KnownGroupCode", "Actor2EthnicCode", "Actor2Religion1Code",
+    "Actor2Religion2Code", "Actor2Type1Code", "Actor2Type2Code", 
+   "Actor2Type3Code", "IsRootEvent", "EventCode", "EventBaseCode", 
+   "EventRootCode", "QuadClass", "GoldsteinScale", "NumMentions", 
+   "NumSources", "NumArticles", "AvgTone", "Actor1Geo_Type", 
+   "Actor1Geo_FullName", "Actor1Geo_CountryCode", 
+   "Actor1Geo_ADM1Code", "Actor1Geo_Lat", "Actor1Geo_Long", 
+   "Actor1Geo_FeatureID", "Actor2Geo_Type", "Actor2Geo_FullName", 
+   "Actor2Geo_CountryCode", "Actor2Geo_ADM1Code", "Actor2Geo_Lat", 
+   "Actor2Geo_Long", "Actor2Geo_FeatureID", "ActionGeo_Type", 
+   "ActionGeo_FullName", "ActionGeo_CountryCode", 
+   "ActionGeo_ADM1Code", "ActionGeo_Lat", "ActionGeo_Long", 
+   "ActionGeo_FeatureID", "DATEADDED", "URL"};
+
+{% endhighlight %}
+
+ We suspect that there is some lower dimensionality to the data, in the sense that:
+
+1. Certain actors only affect a small subset of actors
+2. Certain actors and regions are subject to particular types of events
+
+However, there's no easy way of defining a vector space on events - e.g., it doesn't make sense to subtract the ordinal of event code 030 from event code 010 and calucalte the square of the difference.
+
+Looking at a psuedo random day (March 1, 2015):
+
+#### Conclusion (1)
+
+Let's take a look at number of unique "destination" or "receiving" actors, Actors2, for each Actor1, and vice-versa. Note in the following there are a few magic columns: 7 - Actor1Name, 17 - Actor2Name, 28 - EventBaseCode
+
+{% highlight mathematica %}
+
+parseRow[r_] := 
+ If[StringMatchQ[#, NumberString], # // ToExpression, #] & /@ 
+  StringSplit[r, "\t"]
+csv = parseRow /@ 
+  First /@ Import["~/Desktop/TEMPORARY-GDELT/20150301.export.CSV"]
+actors1 = DeleteCases[Union[csv[[All, 7]]], ""];
+nActors1[actor_] := 
+ Length@DeleteDuplicates@
+   Cases[csv, (x_ /; x[[7]] == actor) :> x[[17]]]
+LaunchKernels[8]
+nActorsByActor1 = ParallelMap[nActors1, actors1];
+CloseKernels[]
+(* Vice-versa for Actor2 *)
+BoxWhiskerChart[{nActorsByActor1, nActorsByActor2}, "Outliers", 
+ ChartStyle -> {Blue, Red}, 
+ ChartLegends -> {"# Actors 2 per Actor 1", "# Actors 1 per Actor 2"}]
+
+{% endhighlight %}
+
+![BW-all-actors]({{ stie.url }}/assets/actors-raw-bw.png){: .center-image }
+
+5 number summaries:
+
+{% highlight mathematica %}
+
+n5Sum[x_] := {Text /@ {"Min", "Q1", "Med", "Q3", "Max"}, {Min@x}~Join~
+   Quartiles[x]~Join~{Max@x}}
+Grid[{Text /@ {"# A2 by A1", "# A1 by A2"}, {Grid[n5Sum[nActorsByActor1]],
+  Grid[n5Sum[nActorsByActor2]]}}, Frame -> All]
+
+{% endhighlight %}
+
+![BW-all-actors]({{ stie.url }}/assets/actors-raw-summary.png){: .center-image }
+
+One thing we already notice is that the distributions of actor/actee are pretty identical, so the event interactions are pretty symmetric in terms of frequency of occurences of actors. 
+
+So it looks like we have three important segments to take a look at: lower quantiles and the IQR (<75%), 75th quantile up. It looks like we have some peculiar outlier above 400 mentions, but taking a look at what those frequent actors are reveals that the outlier should be considered part of the group, and isn't a data anomaly:
+
+{% highlight mathematica %}
+
+getTopK[x_, k_] := First@First@Position[x, RankedMax[x, k]]
+actors1[[getTopK[nActorsByActor1, #] & /@ Range[5]]]
+(* --> {"UNITED STATES", "POLICE", "GOVERNMENT", "PRESIDENT", "UNITED KINGDOM"} *)
+actors2[[getTopK[nActorsByActor2, #] & /@ Range[5]]]
+(* --> {"UNITED STATES", "GOVERNMENT", "PRESIDENT", "POLICE", "SCHOOL"} *)
+
+{% endhighlight %}
+
+Now let's take another look at the shape of our segmented populations. First the infrequent actors:
+
+{% highlight mathematica %}
+
+infreqBit1 = nActorsByActor1 < 10 // Thread;
+infreqBit2 = nActorsByActor2 < 10 // Thread;
+Histogram[{Pick[nActorsByActor1, infreqBit1], 
+  Pick[nActorsByActor2, infreqBit2] }, 
+ ChartLegends -> {"Per A1", "Per A2"}, 
+ PlotLabel -> "# Distinct Actors"]
+
+{% endhighlight %}
+
+![Infreq actors]({{ stie.url }}/assets/actors-infreq-hist.png){: .center-image }
+
+The above is an overlay of the historgrams. Again, very similar distributions, and, as we expect, we have an exponential decay in frequency. For the "infrequent" actors, it seems like events are sporadic, independent, and probabilistic occurences. Another intersting question to ask is among the infrequent actors, how many interactions are with other infrequents?
+
+{% highlight mathematica %}
+
+infreqA1s = Pick[actors1, infreqBit1];
+infreqA2s = Pick[actors2, infreqBit2];
+Length@Intersection[infreqA1s, infreqA2s]/
+  Length@Union[infreqA1s, infreqA2s] // N
+(* --> 0.609785 *)
+
+{% endhighlight %}
+
+Now for the frequents:
+
+{% highlight mathematica %}
+
+freqBit1 = 10 <= nActorsByActor1 < 400 // Thread;
+freqBit2 = 10 <= nActorsByActor2 < 400 // Thread;
+Histogram[{Pick[nActorsByActor1, freqBit1], 
+  Pick[nActorsByActor2, freqBit2] }, 
+ ChartLegends -> {"Per A1", "Per A2"}, 
+ PlotLabel -> "# Distinct Actors"]
+
+{% endhighlight %}
+
+![freq actors]({{ stie.url }}/assets/actors-freq-hist.png){: .center-image }
+
+Similar pattern as infrequent actors, perhaps at a different rate of exponential decay.
+
+### Conclusion (2)
+
+{% highlight mathematica %}
+
+nEvents1[actor_] := 
+ Length@DeleteDuplicates@Cases[csv, (x_ /; x[[7]] == actor) :> x[[28]]]
+nEvents2[actor_] := 
+ Length@DeleteDuplicates@
+   Cases[csv, (x_ /; x[[17]] == actor) :> x[[28]]]
+LaunchKernels[8];
+nEventsByA1 = ParallelMap[nEvents1, actors1];
+nEventsByA2 = ParallelMap[nEvents2, actors2];
+CloseKernels[];
+Histogram[{nEventsByA1, nEventsByA2}, 
+ ChartLegends -> {"Per A1", "Per A2"}, 
+ PlotLabel -> "# Events by Actor"]
+
+{% endhighlight %}
+
+![freq actors]({{ stie.url }}/assets/hist-event-actor.png){: .center-image }
+
+Again, very similar to the actor situation, we find that the event-actor graph is fairly sparse, in that few actors have very many events involved (which gives some indication of a lower dimensionality to the categorical data).
+
+It'd be nice to pursue some kind of dimensionality reduction on the categorical values. This is valuable because a lot of shape and interesting features is hidden in the lower end of the exponential distributions we're seeing here, and that has a lot of potential for predictive power since it will enable us to distinguish events even when they're sparse in the context of which actors they occur to.
+
+### R Exploration
 
 Import libraries
 
@@ -167,8 +317,8 @@ Read the GDELT news data from 2005
 
 news_data <- read.csv("gdelt_2005.csv", header=FALSE, sep='\t') # read data
 news_data$date <- as.Date(as.character(news_data$SQLDATE), "%Y%m%d")
-colnames(news_data) <- c("GLOBALEVENTID", "SQLDATE", "MonthYear", "Year", "FractionDate", "Actor1Code", "Actor1Name", "Actor1CountryCode", "Actor1KnownGroupCode", "Actor1EthnicCode", "Actor1Religion1Code", "Actor1Religion2Code", "Actor1Type1Code", "Actor1Type2Code", "Actor1Type3Code", "Actor2Code", "Actor2Name", "Actor2CountryCode", "Actor2KnownGroupCode", "Actor2EthnicCode", "Actor2Religion1Code", "Actor2Religion2Code", "Actor2Type1Code", "Actor2Type2Code", "Actor2Type3Code", "IsRootEvent", "EventCode", "EventBaseCode", "EventRootCode", "QuadClass", "GoldsteinScale", "NumMentions", "NumSources", "NumArticles", "AvgTone", "Actor1Geo_Type", "Actor1Geo_FullName", "Actor1Geo_CountryCode", "Actor1Geo_ADM1Code", "Actor1Geo_Lat", "Actor1Geo_Long", "Actor1Geo_FeatureID", "Actor2Geo_Type", "Actor2Geo_FullName", "Actor2Geo_CountryCode", "Actor2Geo_ADM1Code", "Actor2Geo_Lat", "Actor2Geo_Long", "Actor2Geo_FeatureID", "ActionGeo_Type", "ActionGeo_FullName", "ActionGeo_CountryCode", "ActionGeo_ADM1Code", "ActionGeo_Lat", "ActionGeo_Long", "ActionGeo_FeatureID", "DATEADDED")
 news_data_ts <- xts(news_data[c("GoldsteinScale", "NumMentions", "AvgTone")], order.by=news_data$date)
+colnames <- c() # Same as in Mathematica above
 news_data_mean_ts <- aggregate(news_data_ts, index(news_data_ts), "mean")
 
 {% endhighlight %}
