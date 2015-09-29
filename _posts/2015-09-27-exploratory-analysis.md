@@ -87,7 +87,12 @@ We retrieved stock pricing information from Yahoo Finance for S&P 500 (^GSPC) fr
 
 ### Delving into GDELT
 
-TODO explore CAMEO space
+GDELT space is a lot of categorical variables (see below). 
+
+describe possible distances
+need for euclidean product
+locate different way of reducing dimensionality
+just use catogires directly in model (indicator == category + weight).
 
 ## R Exploration
 
@@ -179,3 +184,10 @@ plot(coredata(merged_data$Volume), coredata(merged_data$NumMentions))
 ![Daily return filename]({{ stie.url }}/assets/Volume_vs_Num_Mentions.png){: .center-image }
 
 There seems to be almost no correlation between the number of mentions and the price data.
+
+## Commodities Exploration
+
+![Energies]({{ stie.url }}/assets/commodity-hist-energy.jpg){: .center-image }
+
+![Minerals]({{ stie.url }}/assets/commodity-hist-minerals.jpg){: .center-image }
+
