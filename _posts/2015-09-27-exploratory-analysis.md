@@ -241,6 +241,6 @@ There seems to be almost no correlation between the number of mentions and the p
 ## Commodities Exploration
 
 ![Energies]({{ stie.url }}/assets/commodity-hist-energy.jpg){: .center-image }
-
 ![Minerals]({{ stie.url }}/assets/commodity-hist-minerals.jpg){: .center-image }
 
+![Energies]({{ stie.url }}/assets/correlationmatrix.png){: .center-image }
