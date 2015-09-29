@@ -226,6 +226,8 @@ actors2[[getTopK[nActorsByActor2, #] & /@ Range[5]]]
 
 {% endhighlight %}
 
+An important conclusion here is that it may be useful to *scale event importance agains the actor frequency*, otherwise US news will unfairly dominate the impact on forecasting, just because news there has higher coverage. We see this is the case for the _code 190_ event above as well. At the very least it'll be important to learn the weights for each actors.
+
 Now let's take another look at the shape of our segmented populations. First the infrequent actors:
 
 {% highlight mma %}
