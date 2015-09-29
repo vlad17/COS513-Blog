@@ -142,7 +142,7 @@ We retrieved stock pricing information from Yahoo Finance for S&P 500 (^GSPC) fr
 
 GDELT space is a lot of categorical variables (see below R Exploration section for the exact column names)
 
-{% highlight mathematica %}
+{% highlight mma %}
 
 cols = {"GLOBALEVENTID", "SQLDATE", "MonthYear", "Year", 
    "FractionDate", "Actor1Code", "Actor1Name", "Actor1CountryCode", 
@@ -178,7 +178,7 @@ Looking at a psuedo random day (March 1, 2015):
 
 Let's take a look at number of unique "destination" or "receiving" actors, Actors2, for each Actor1, and vice-versa. Note in the following there are a few magic columns: 7 - Actor1Name, 17 - Actor2Name, 28 - EventBaseCode
 
-{% highlight mathematica %}
+{% highlight mma %}
 
 parseRow[r_] := 
  If[StringMatchQ[#, NumberString], # // ToExpression, #] & /@ 
@@ -203,7 +203,7 @@ BoxWhiskerChart[{nActorsByActor1, nActorsByActor2}, "Outliers",
 
 5 number summaries:
 
-{% highlight mathematica %}
+{% highlight mma %}
 
 n5Sum[x_] := {Text /@ {"Min", "Q1", "Med", "Q3", "Max"}, {Min@x}~Join~
    Quartiles[x]~Join~{Max@x}}
@@ -218,7 +218,7 @@ One thing we already notice is that the distributions of actor/actee are pretty 
 
 So it looks like we have three important segments to take a look at: lower quantiles and the IQR (<75%), 75th quantile up. It looks like we have some peculiar outlier above 400 mentions, but taking a look at what those frequent actors are reveals that the outlier should be considered part of the group, and isn't a data anomaly:
 
-{% highlight mathematica %}
+{% highlight mma %}
 
 getTopK[x_, k_] := First@First@Position[x, RankedMax[x, k]]
 actors1[[getTopK[nActorsByActor1, #] & /@ Range[5]]]
@@ -230,7 +230,7 @@ actors2[[getTopK[nActorsByActor2, #] & /@ Range[5]]]
 
 Now let's take another look at the shape of our segmented populations. First the infrequent actors:
 
-{% highlight mathematica %}
+{% highlight mma %}
 
 infreqBit1 = nActorsByActor1 < 10 // Thread;
 infreqBit2 = nActorsByActor2 < 10 // Thread;
@@ -245,7 +245,7 @@ Histogram[{Pick[nActorsByActor1, infreqBit1],
 
 The above is an overlay of the historgrams. Again, very similar distributions, and, as we expect, we have an exponential decay in frequency. For the "infrequent" actors, it seems like events are sporadic, independent, and probabilistic occurences. Another intersting question to ask is among the infrequent actors, how many interactions are with other infrequents?
 
-{% highlight mathematica %}
+{% highlight mma %}
 
 infreqA1s = Pick[actors1, infreqBit1];
 infreqA2s = Pick[actors2, infreqBit2];
@@ -257,7 +257,7 @@ Length@Intersection[infreqA1s, infreqA2s]/
 
 Now for the frequents:
 
-{% highlight mathematica %}
+{% highlight mma %}
 
 freqBit1 = 10 <= nActorsByActor1 < 400 // Thread;
 freqBit2 = 10 <= nActorsByActor2 < 400 // Thread;
@@ -274,7 +274,7 @@ Similar pattern as infrequent actors, perhaps at a different rate of exponential
 
 ### Conclusion (2)
 
-{% highlight mathematica %}
+{% highlight mma %}
 
 nEvents1[actor_] := 
  Length@DeleteDuplicates@Cases[csv, (x_ /; x[[7]] == actor) :> x[[28]]]
