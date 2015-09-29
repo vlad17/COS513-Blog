@@ -14,16 +14,16 @@ Our goal is to explain stock market behavior by relying on non-macroeconomic new
 
 Our goal will be to predict the stock market. As an initial simplification, we will be predicting:
  
-1. the end-of-day (close) value of S&P500 
-2. volatility and correlations among assets themselves or between sectors.
+* the end-of-day (close) value of S&P500 (team 1) and commodities (team 2)
+* volatility and correlations among assets themselves or between sectors.
 
 Where we use as given given its history and past world event history (looking back `N` days).
 
 The news source (GDELT) is lagged by one day, and it does not have timestamps for the news. Thus any model that we build can only be applied assuming there is an existing real-time scraper for the data.
 
-The insufficiency in our data source here leads to other interesting directions we can take our analysis - we can train models to be lagged arbitrarily when simulating from historical events (or not at all). The predictive power of all of the models may vary. An important question is how much weaker long-term predictions (over several days or a month) are given minor delays (such as a day).
+The insufficiency in our data source here leads to other interesting directions we can take our analysis - we can train models to be lagged arbitrarily when simulating from historical events (or not at all). The predictive power of all of the models may vary. Thus, if we have time, an interesting third direction we may explore is
 
-In the future, we may also look at other indices: DJIA, FTSE, DAX, Vanguard, etc. Finally, one more option would be to look at currency exchange rates. GDELT's wealth of international data would be very predictive here.
+* How much weaker long-term predictions (over several days or a month) are given minor delays of information (such as a day). 
 
 ## Previous Work
 Previous work as looked at forecasting various financial data with a broad array of techniques from traditional machine learning approaches to finding new feature sets from Wikipedia, Google, and the news.
@@ -41,7 +41,7 @@ Southeast Asian haze and December 2013 Little India riot on Singapore''
 
 ## The Data
 
-#### GDELT 
+### GDELT 
 
 This is a database of worldwide data. 
 [Raw data link on GDELT site](http://data.gdeltproject.org/events/index.html).
@@ -59,8 +59,11 @@ The GDELT provides a knowledge graph that describes not only “what” happened
 
 ![Turmoil in the first 7 days of July](/assets/First_Week_July_15.PNG){: .center-image }
 
+#### Data Volume
 
 GDELT releases a raw data file every day that average about **250k rows (approx. 3 rows per second)**.
+
+#### Data Schema
 
 The row data file is a csv with around 57 columns that indicate several variables such as the:
 
@@ -68,13 +71,23 @@ The row data file is a csv with around 57 columns that indicate several variable
 * Date timestamp
 * Location
 * Link to articles
-* Persons involved (actors)
+* Actors involved
 
-#### Stock Market Information
+The CAMEO code enables for numeric categorization of events. Since the dimensionality of ``events that can occur" is very large, the CAMEO system enables compactification and reduction of this space into something more analyzable. CAMEO improves upon previous event categorization schemes, WEIS and COPDAB. Features:
+
+1. It relies on WordNet synsets to automatically codify events
+2. Supports state and non-state actors, as well as regional and ethnic categorization.
+3. Location information makes sense in the context of a cameo label
+
+![Example CAMEO label]({{ stie.url }}/assets/cameo-example.png){: .center-image }
 
 ## Exploratory Analysis
 
 We retrieved stock pricing information from Yahoo Finance for S&P 500 (^GSPC) from January 1, 2005 to December 31, 2005. This data included the S&P's opening, high, low, closing, and adjusted closing price for each date in this range. We also looked at GDELT data for 2005. 
+
+### Delving into GDELT
+
+TODO explore CAMEO space
 
 ## R Exploration
 
@@ -166,4 +179,3 @@ plot(coredata(merged_data$Volume), coredata(merged_data$NumMentions))
 ![Daily return filename]({{ stie.url }}/assets/Volume_vs_Num_Mentions.png){: .center-image }
 
 There seems to be almost no correlation between the number of mentions and the price data.
-
