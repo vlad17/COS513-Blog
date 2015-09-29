@@ -12,7 +12,12 @@ Our goal is to explain stock market behavior by relying on non-macroeconomic new
 
 ## Project description
 
-Our goal will be to predict the stock market. As an initial simplification, we will be predicting the end-of-day value of S&P500 given its history and past world event history (looking back `N` days). Other dimensions to predict are volatility and correlations among assets themselves or between sectors.
+Our goal will be to predict the stock market. As an initial simplification, we will be predicting:
+ 
+1. the end-of-day (close) value of S&P500 
+2. volatility and correlations among assets themselves or between sectors.
+
+Where we use as given given its history and past world event history (looking back `N` days).
 
 The news source (GDELT) is lagged by one day, and it does not have timestamps for the news. Thus any model that we build can only be applied assuming there is an existing real-time scraper for the data.
 
