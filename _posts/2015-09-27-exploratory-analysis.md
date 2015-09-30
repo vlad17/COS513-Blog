@@ -51,15 +51,15 @@ White 1988 - 2 layer neural network on IBM stocks\\
 Yao et al - backpropagation perceptron and technical indicators can predict six month CHF/USD\\
 Recursive neural networks could work, also diffusion networks\\
 Trading is 24 hours and rates change quickly so we need to fix an arbitrary closing hour and only use an average of the exchange rates for the period between closing\\
-Transaction cost - typically 1% of exchange rate, strategies often trade on weekly basis
+Transaction cost typically 1% of exchange rate, strategies often trade on weekly basis
 
 Data from OANDA.com
 
 #### Models
-Four input models:
-- time-delayed daily averages
-- time-delayed weekly averages
-- progressive averages (6 months back): day before, two days, week, 2 weeks, month, 3 months, 6 months
+Four input models:\\
+- time-delayed daily averages\\
+- time-delayed weekly averages\\
+- progressive averages (6 months back): day before, two days, week, 2 weeks, month, 3 months, 6 months\\
 - long progressive averages (2 years back)
 
 Cannot just rely on NMSE, need to evaluate models using profit\\
