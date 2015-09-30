@@ -173,7 +173,7 @@ cols = {"GLOBALEVENTID", "SQLDATE", "MonthYear", "Year",
 
 "EventCode", "EventBaseCode", "EventRootCode" - hierarchical CAMEO code for event classification (see Event hierarchy chart below)
 
-![BW-all-actors]({{ stie.url }}/assets/EventHierarchy.png)
+![CAMEO Hierarchy]({{ stie.url }}/assets/EventHierarchy.png){: .center-image }
 
 "QuadClass" - Material/Verbal Conflict/Cooperation classification
 
