@@ -131,6 +131,10 @@ The CAMEO code enables for numeric categorization of events. Since the dimension
 ![Example CAMEO label]({{ stie.url }}/assets/cameo-example.png){: .center-image }
 
 ![Code 190 Map](/assets/code_190_map.png){: .center-image }
+![Code 192 Map](/assets/code_192_map.png){: .center-image }
+![Code 194 Map](/assets/code_194_map.png){: .center-image }
+
+This set of maps shows how news information will intersect with geographic locations. The data plotted is the week of March 1st, 2015. Each dot corresponds to an event labeled with the code indicated. Code 190 represents general conflict data and is useful for seeing the general spread of data. Of note are Brazil, Russia, and China, which either have or report very few conflicts in their news. Code 192 (occupy territory) shows how the labelling of news can be imprecise. Code 194 (armed conflict) shows there there are meaningful local patterns to be found. 
 
 ## Exploratory Analysis
 
