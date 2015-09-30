@@ -42,25 +42,16 @@ Southeast Asian haze and December 2013 Little India riot on Singapore''
 ### Forecasting Foreign Exchange Rates with Neural Networks
 
 #### Background
-Long position: expect foreign currency to appreciate vs USD, react by buying that currency
-
-Short position: export foreign current to depreciate against USD, react by selling that currency
-
-Actions take place over hours or even minutes
-
-Daily trading volume > \$1.5 trillion USD, 24/5
-
-Exchange rates influenced by many economic, political, psychological factors
-
-White 1988 - 2 layer neural network on IBM stocks
-
-Yao et al - backpropagation perceptron and technical indicators can predict sixm onth CHF/USD
-
-Recursive neural networks could work, also diffusion networks
-
-Trading is 24 hours and rates change quickly so we need to fix an arbitrary closing hour and only use an average of the exchange rates for the period between closing
-
-Transaction cost - typically 1\% of exchange rate, strategies often trade on weekly basis
+Long position: expect foreign currency to appreciate vs USD, react by buying that currency\\
+Short position: export foreign current to depreciate against USD, react by selling that currency\\
+Actions take place over hours or even minutes\\
+Daily trading volume > \$1.5 trillion USD, 24/5\\
+Exchange rates influenced by many economic, political, psychological factors\\
+White 1988 - 2 layer neural network on IBM stocks\\
+Yao et al - backpropagation perceptron and technical indicators can predict six month CHF/USD\\
+Recursive neural networks could work, also diffusion networks\\
+Trading is 24 hours and rates change quickly so we need to fix an arbitrary closing hour and only use an average of the exchange rates for the period between closing\\
+Transaction cost - typically 1% of exchange rate, strategies often trade on weekly basis
 
 Data from OANDA.com
 
@@ -71,19 +62,19 @@ Four input models:
 - progressive averages (6 months back): day before, two days, week, 2 weeks, month, 3 months, 6 months
 - long progressive averages (2 years back)
 
-Cannot just rely on NMSE, need to evaluate models using profit
+Cannot just rely on NMSE, need to evaluate models using profit\\
 Profit = (money obtained / seed money)^{52/w} - 1
 
-Two strategies: buying and selling whole amount when increase/decrease predicted, and buying/selling only 10\% at a time
+Two strategies: buying and selling whole amount when increase/decrease predicted, and buying/selling only 10% at a time
 
 #### Results
-Predictions often much lower than real value
-Predicting longer than 6 months is hard (NMSE and profit diverge wildly)
+Predictions often much lower than real value or lagged behind forex rates\\
+Predicting longer than 6 months is hard (NMSE and profit diverge wildly)\\
 Profit decreases when training model further
 
-Experimenting with large number of currencies without inputting linkage is not good
-Best profits achieved with time-delayed 14 daily averages (which was also worst in terms of NMSE)
-Long progressive averages model is best for NMSE
+Experimenting with large number of currencies without inputting linkage is not good\\
+Best profits achieved with time-delayed 14 daily averages (which was also worst in terms of NMSE)\\
+Long progressive averages model is best for NMSE\\
 Boolean indicators help with NMSE but have no effect on profit
 
 
