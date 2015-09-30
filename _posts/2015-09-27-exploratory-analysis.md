@@ -33,7 +33,7 @@ Previous work as looked at forecasting various financial data with a broad array
 - [Big Data Gets Bigger: Now Google Trends Can Predict The Market](http://www.forbes.com/sites/davidleinweber/2013/04/26/big-data-gets-bigger-now-google-trends-can-predict-the-market/)
   - Using Internet search data to predict pricing data: ''the team found a strong correlation between Internet searches for a company?s name and its trade volume, the total number of times the stock changed hands over a given week... But the Google data couldn't predict its price'' 
 - [Forecasting Foreign Exchange Rates with Neural Networks](http://arxiv.org/pdf/1404.1996v1.pdf)
-- [Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and ^STI](http://liawww.epfl.ch/uploads/project_reports/report_282.pdf)
+- [Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and ^STI](http://arxiv.org/pdf/1404.1996v1.pdf)
   - Using GDELT ''to highlight the various impacts of June 2013
 Southeast Asian haze and December 2013 Little India riot on Singapore'' 
 - [SVM based models for predicting foreign currency exchange rates](http://www.researchgate.net/publication/4047521_SVM_based_models_for_predicting_foreign_currency_exchange_rates)
@@ -54,7 +54,7 @@ Exchange rates influenced by many economic, political, psychological factors
 
 White 1988 - 2 layer neural network on IBM stocks
 
-Yao et al - backpropagation perceptron and technical indicators can predict six month CHF/USD
+Yao et al - backpropagation perceptron and technical indicators can predict sixm onth CHF/USD
 
 Recursive neural networks could work, also diffusion networks
 
