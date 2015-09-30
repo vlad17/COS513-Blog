@@ -173,7 +173,8 @@ cols = {"GLOBALEVENTID", "SQLDATE", "MonthYear", "Year",
 
 "EventCode", "EventBaseCode", "EventRootCode" - hierarchical CAMEO code for event classification (see Event hierarchy chart below)
 
-![CAMEO Hierarchy](/assets/EventHierarchy.PNG){: .center-image }
+![@CAMEO Hierarchy](/assets/EventHierarchy.PNG =600x){: .center-image }
+[@CAMEO Hierarchy]: Phua, Clifton, et al. "Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and^ STI." arXiv preprint arXiv:1404.1996(2014).
 
 "QuadClass" - Material/Verbal Conflict/Cooperation classification
 
