@@ -167,7 +167,24 @@ cols = {"GLOBALEVENTID", "SQLDATE", "MonthYear", "Year",
 
 {% endhighlight %}
 
- We suspect that there is some lower dimensionality to the data, in the sense that:
+### Some Key columns that we are looking at
+
+"Actor1Code", "Actor1Name", "Actor1Type1Code" - for identification of actors and their capacity to act
+
+"EventCode", "EventBaseCode", "EventRootCode" - hierarchical CAMEO code for event classification (see Event hierarchy chart below)
+
+![BW-all-actors]({{ stie.url }}/assets/EventHierarchy.png)
+
+"QuadClass" - Material/Verbal Conflict/Cooperation classification
+
+"GoldsteinScale" - Each CAMEO event code is assigned a numeric score from 
+-10 to +10, capturing  the theoretical  potential impact  that  type  of  event  will  have  on  the  stability  of  a country. 
+
+"NumMentions", "NumSources", "NumArticles" - a proxy for the impact of the event y looking at news sources that mention it.
+
+#### Exploration into actors and relationships
+
+We suspect that there is some lower dimensionality to the data, in the sense that:
 
 1. Certain actors only affect a small subset of actors
 2. Certain actors and regions are subject to particular types of events
