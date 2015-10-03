@@ -36,4 +36,4 @@ http://people.cs.vt.edu/naren/papers/websci-gdelt-2014.pdf
 
 ## Parts 2 and 3: Forecasting
 
-TODO include new md files in _includes/2015-10-03-includes/ folder
+{% include 2015-10-03-includes/forecasting.md %}
