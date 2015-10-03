@@ -19,13 +19,11 @@ $$O^j_{t+1} := (x_{t+1}^{(i)} > x_t^{(i)}) = f(A_t \text{Data}_t) $$
 
 ##### Optimize the likelihood of what we see
 
-- LDA, Maximum Likelihood ... : 
-- $$\text{max} \mathbb{P} (\mathbb{Data}_t | O_t)$$
+- LDA, Maximum Likelihood ... :  $$\text{max} \mathbb{P} (\mathbb{Data}_t | O_t)$$
 
 ##### Optimize the prediction power over the training set
 - Linear regression
-- SVM: can also be non linear using a kernel 
-
+- [SVM]{http://www.researchgate.net/publication/4047521_SVM_based_models_for_predicting_foreign_currency_exchange_rates}: can also be non linear using a kernel 
 
 #### Non linear models
 - Hiden Markov Models
