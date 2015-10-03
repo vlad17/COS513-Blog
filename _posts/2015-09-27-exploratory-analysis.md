@@ -32,8 +32,8 @@ Previous work as looked at forecasting various financial data with a broad array
   - Analyzing the effect of news on stock prices: ''Fundamental macroeconomic news has little effect on stock prices... Effect of news... depends on the varying responses of expected flows relative to equity discount rates'' 
 - [Big Data Gets Bigger: Now Google Trends Can Predict The Market](http://www.forbes.com/sites/davidleinweber/2013/04/26/big-data-gets-bigger-now-google-trends-can-predict-the-market/)
   - Using Internet search data to predict pricing data: ''the team found a strong correlation between Internet searches for a company?s name and its trade volume, the total number of times the stock changed hands over a given week... But the Google data couldn't predict its price'' 
-- [Forecasting Foreign Exchange Rates with Neural Networks](http://arxiv.org/pdf/1404.1996v1.pdf)
-- [Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and ^STI](http://liawww.epfl.ch/uploads/project_reports/report_282.pdf)
+- [Forecasting Foreign Exchange Rates with Neural Networks](http://liawww.epfl.ch/uploads/project_reports/report_282.pdf)
+- [Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and ^STI](http://arxiv.org/pdf/1404.1996v1.pdf)
   - Using GDELT ''to highlight the various impacts of June 2013
 Southeast Asian haze and December 2013 Little India riot on Singapore'' 
 - [SVM based models for predicting foreign currency exchange rates](http://www.researchgate.net/publication/4047521_SVM_based_models_for_predicting_foreign_currency_exchange_rates)
@@ -42,48 +42,39 @@ Southeast Asian haze and December 2013 Little India riot on Singapore''
 ### Forecasting Foreign Exchange Rates with Neural Networks
 
 #### Background
-Long position: expect foreign currency to appreciate vs USD, react by buying that currency
-
-Short position: export foreign current to depreciate against USD, react by selling that currency
-
-Actions take place over hours or even minutes
-
-Daily trading volume > \$1.5 trillion USD, 24/5
-
-Exchange rates influenced by many economic, political, psychological factors
-
-White 1988 - 2 layer neural network on IBM stocks
-
-Yao et al - backpropagation perceptron and technical indicators can predict six month CHF/USD
-
-Recursive neural networks could work, also diffusion networks
-
-Trading is 24 hours and rates change quickly so we need to fix an arbitrary closing hour and only use an average of the exchange rates for the period between closing
-
-Transaction cost - typically 1\% of exchange rate, strategies often trade on weekly basis
+Long position: expect foreign currency to appreciate vs USD, react by buying that currency\\
+Short position: export foreign current to depreciate against USD, react by selling that currency\\
+Actions take place over hours or even minutes\\
+Daily trading volume > \$1.5 trillion USD, 24/5\\
+Exchange rates influenced by many economic, political, psychological factors\\
+White 1988 - 2 layer neural network on IBM stocks\\
+Yao et al - backpropagation perceptron and technical indicators can predict six month CHF/USD\\
+Recursive neural networks could work, also diffusion networks\\
+Trading is 24 hours and rates change quickly so we need to fix an arbitrary closing hour and only use an average of the exchange rates for the period between closing\\
+Transaction cost typically 1% of exchange rate, strategies often trade on weekly basis
 
 Data from OANDA.com
 
 #### Models
-Four input models:
-- time-delayed daily averages
-- time-delayed weekly averages
-- progressive averages (6 months back): day before, two days, week, 2 weeks, month, 3 months, 6 months
+Four input models:\\
+- time-delayed daily averages\\
+- time-delayed weekly averages\\
+- progressive averages (6 months back): day before, two days, week, 2 weeks, month, 3 months, 6 months\\
 - long progressive averages (2 years back)
 
-Cannot just rely on NMSE, need to evaluate models using profit
+Cannot just rely on NMSE, need to evaluate models using profit\\
 Profit = (money obtained / seed money)^{52/w} - 1
 
-Two strategies: buying and selling whole amount when increase/decrease predicted, and buying/selling only 10\% at a time
+Two strategies: buying and selling whole amount when increase/decrease predicted, and buying/selling only 10% at a time
 
 #### Results
-Predictions often much lower than real value
-Predicting longer than 6 months is hard (NMSE and profit diverge wildly)
+Predictions often much lower than real value or lagged behind forex rates\\
+Predicting longer than 6 months is hard (NMSE and profit diverge wildly)\\
 Profit decreases when training model further
 
-Experimenting with large number of currencies without inputting linkage is not good
-Best profits achieved with time-delayed 14 daily averages (which was also worst in terms of NMSE)
-Long progressive averages model is best for NMSE
+Experimenting with large number of currencies without inputting linkage is not good\\
+Best profits achieved with time-delayed 14 daily averages (which was also worst in terms of NMSE)\\
+Long progressive averages model is best for NMSE\\
 Boolean indicators help with NMSE but have no effect on profit
 
 
@@ -131,6 +122,10 @@ The CAMEO code enables for numeric categorization of events. Since the dimension
 ![Example CAMEO label]({{ stie.url }}/assets/cameo-example.png){: .center-image }
 
 ![Code 190 Map](/assets/code_190_map.png){: .center-image }
+![Code 192 Map](/assets/code_192_map.png){: .center-image }
+![Code 194 Map](/assets/code_194_map.png){: .center-image }
+
+This set of maps shows how news information will intersect with geographic locations. The data plotted is the week of March 1st, 2015. Each dot corresponds to an event labeled with the code indicated. Code 190 represents general conflict data and is useful for seeing the general spread of data. Of note are Brazil, Russia, and China, which either have or report very few conflicts in their news. Code 192 (occupy territory) shows how the labelling of news can be imprecise. Code 194 (armed conflict) shows there there are meaningful local patterns to be found. 
 
 ## Exploratory Analysis
 
@@ -163,7 +158,25 @@ cols = {"GLOBALEVENTID", "SQLDATE", "MonthYear", "Year",
 
 {% endhighlight %}
 
- We suspect that there is some lower dimensionality to the data, in the sense that:
+### Some Key columns that we are looking at
+
+"Actor1Code", "Actor1Name", "Actor1Type1Code" - for identification of actors and their capacity to act
+
+"EventCode", "EventBaseCode", "EventRootCode" - hierarchical CAMEO code for event classification (see Event hierarchy chart below)
+
+![CAMEO Hierarchy](/assets/EventHierarchysm.png){: .center-image }
+ Phua, Clifton, et al. "Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and^ STI." arXiv preprint arXiv:1404.1996(2014).
+
+"QuadClass" - Material/Verbal Conflict/Cooperation classification
+
+"GoldsteinScale" - Each CAMEO event code is assigned a numeric score from 
+-10 to +10, capturing  the theoretical  potential impact  that  type  of  event  will  have  on  the  stability  of  a country. 
+
+"NumMentions", "NumSources", "NumArticles" - a proxy for the impact of the event y looking at news sources that mention it.
+
+#### Exploration into actors and relationships
+
+We suspect that there is some lower dimensionality to the data, in the sense that:
 
 1. Certain actors only affect a small subset of actors
 2. Certain actors and regions are subject to particular types of events
