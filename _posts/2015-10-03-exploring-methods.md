@@ -31,4 +31,4 @@ Initially, we'll be trying just to find, for a given $$i$$, $$f(\{r_n\}_{n=0}^{M
 
 ## Parts 2 and 3: Forecasting
 
-{% include 2015-10-03-includes/forecast.md %}
+{% include 2015-10-03-includes/forecasting.md %}
