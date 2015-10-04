@@ -47,16 +47,10 @@ Last one is a lot of work, but probably the most enabling.
 
 Only have distance to work with, and no intuition for the manifold of event space. Will have to try various embedding approaches.
 
-1. Multidimensional Scaling
-
-Assumptions
-Math
-sklearn
-runtime
-
-2. Isomap
+1. PCA
+2. MDS
 3. LLE
-4. PCA
+4. Isomap
 
 TODO: test out sklearn
 
