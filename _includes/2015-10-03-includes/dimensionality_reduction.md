@@ -58,4 +58,22 @@ runtime
 3. LLE
 4. PCA
 
-test out sklearn
+TODO: test out sklearn
+
+#### Evaluation Algorithm
+
+Let us presume a probabilistic forcast $$f$$ from above. 
+
+**Matrix-based evaluation**.
+
+_Outer loop_: Take $$N'$$ most recent rows and sample $$N$$ more from $$M$$ months ago. Run dimensionality reduction algorithm $$i$$ from above.
+
+_Inner loop:_ Binary search on sub-dimension $$d$$ (just a bias-variance tradeoff as we go low-to-high dimension, perhaps use F-score here in the binary search). Use the output of $$i$$ on a given $$d$$ to train and validate $$f$$, obtaining some loss value.
+
+Optimize the _inner loop_ (logarithmic search over values $$1,...50$$) over hyperparameters $$N,N',M,i$$. $$i\in\{1,...,4\}$$ is small enough, but $$N,N',M$$ need to be segmented (since they need to sweep a large range).
+
+**Distanced-based evaluation**.
+
+The only difference here is we're looking up the rows and recomputing distance each time it is queried, not explicitly representing it. The outer loop's parameters can be simplified to us the last $$N$$ rows, where $$N$$ may now be much larger.
+
+
