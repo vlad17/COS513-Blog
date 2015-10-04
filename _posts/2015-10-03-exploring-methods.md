@@ -19,6 +19,11 @@ We also have $$\{x_t^{(i)}\}_{t=t_0-N}^{t_0}$$, the time series data for EOD com
 
 Initially, we'll be trying just to find, for a given $$i$$, $$f(\{r_n\}_{n=0}^{M},\{\textbf{x}_{t=t_0-N}^{t_0}\})\approx \mathbb{P}\left(x_{t+1}^{(i)}>x_{t}^{(i)}\right)$$.
 
+## Previous work on GDELT
+
+http://people.cs.vt.edu/naren/papers/websci-gdelt-2014.pdf
+??
+
 ## Approach
 
 1. Previous exploration has indicated there is some aspect of lower dimenality in $$R$$ - agents would only interact with a small subset of other agents, each agent would only be affected by small subsets of types of events. Thus we'd like to reduce from $$R$$ to $$\mathbb{R}^d$$ for $$d < 54$$.
@@ -31,4 +36,4 @@ Initially, we'll be trying just to find, for a given $$i$$, $$f(\{r_n\}_{n=0}^{M
 
 ## Parts 2 and 3: Forecasting
 
-TODO include new md files in _includes/2015-10-03-includes/ folder
+{% include 2015-10-03-includes/forecasting.md %}
