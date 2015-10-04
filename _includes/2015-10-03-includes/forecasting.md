@@ -14,7 +14,7 @@ $$f_t$$ is a function of all features observed before $$t$$
 - Cross validation doesn't always make sense (look ahead bias)
 
 We can think about the 
-At time $t$, let $B_t \in \mathbb{R}^d$ represent the data that we know at time $t$ (news events, past prices of comodities), and we want to find the best estimator $f$ of  
+At time $t$, let $B_t \in \mathbb{R}^d$ represent the data that we know at time $t$ (news events, past prices of commodities), and we want to find the best estimator $f$ of  
 # Algorithms 
 
 
@@ -33,7 +33,15 @@ $$P^j_{t+1} = f(A_t \text{Data}_t) $$
 - Linear regression
 
 # Non linear models
-
-- Hiden Markov Models
+We want a probabilistic framework for modeling a time series 
+- Hidden Markov Models
+  - hidden states, output states, transition probabilities between states
+  - hidden states will correspond to market regimes (bullish, bearish)
+  - can experiment with subsets of output states: large change up, slight change up, large change down, slight change down, no change
+  - given past time series data we want to input a new data point (some news event) which might change our regime/hidden state
+  - use generalized expectation-maximization to compute maximum likelihood estimates and posterior estimates for transitions and outputs
+  
 - Genetic Algorithms
+  - used to optimize parameters of neural net, decision tree, etc
+  - 
 - Neural network
