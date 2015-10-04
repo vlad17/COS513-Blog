@@ -1,3 +1,8 @@
+TODO: mention insights from this again
+[Forecasting Foreign Exchange Rates with Neural Networks](http://liawww.epfl.ch/uploads/project_reports/report_282.pdf)
+
+
+
 
 ### Feature selection
 - The moving average of 1 week, 1 month, 3 months to smooth the price time series, for different commodities
@@ -13,7 +18,7 @@
 - Develop a trading strategy and use on the market
 
 ### Algorithms 
-
+(TODO: note: logit probably more natural than linear in probabilistic sense)
 #### Linear models
 $$O^j_{t+1} := (x_{t+1}^{(i)} > x_t^{(i)}) = f(A_t \text{Data}_t) $$
 

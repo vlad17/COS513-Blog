@@ -18,7 +18,7 @@ Some columns are redundant or don't provide info:
 
 Define a distance $$\rho:R\times R\rightarrow \mathbb{R}_+$$. $$\rho$$ induces the Gram matrix $$G\in\mathbb{R}^{N\times N}$$ for our data. Treating $$G$$ as our distance matrix enables us to apply (albeit with less efficient algorithms) classical dimensionality reduction techniques.
 
-The *assumption* after the "easy removals" section above is that each of the [columns](http://data.gdeltproject.org/documentation/GDELT-Data_Format_Codebook.pdf) contribute to the dissimilarity independently - so we only need to find per-column distances. It's unlikely that we can find the ideal distance function manually, so it's a good idea to parameterize it. These are going to end up being *hyperparameters* in the global regression problem, so we should be thrifty with them. One essential set of hyperparameters is the weights of each column. Other than that all the below functions can be extended to rely on additional hyperparameters if necessary.
+The **assumption** after the "easy removals" section above is that each of the [columns](http://data.gdeltproject.org/documentation/GDELT-Data_Format_Codebook.pdf) contribute to the dissimilarity independently - so we only need to find per-column distances. It's unlikely that we can find the ideal distance function manually, so it's a good idea to parameterize it. These are going to end up being *hyperparameters* in the global regression problem, so we should be thrifty with them. One essential set of hyperparameters is the weights of each column. Other than that all the below functions can be extended to rely on additional hyperparameters if necessary.
 
 We go through every column and define each columns own distance, each with its own parameters. For columns that are already numeric (e.g., `NumArticles`), that column's contribution is just the $$L_1$$ norm.
 
@@ -26,19 +26,36 @@ Categorical distances. We can probably come up with fancy distance metrics - `Qu
 
 Thus, for now, categorical variables will just operate on the discrete metric.
 
+Example of **future potential improvement**: look up location data - in addition to a discrete metric, "New York" and "Connecticut" string locations would have additional columns for their lattitude and longitude (which would have to be looked up).
 
+#### Data Size
 
--> Generate gram matrix
--> Discuss distance funciton
--> Preprocessing in python
--> Consider various reduction methods, their applicability, their assumptions (and whether they hold)
--> hyperparams and evaluation - over different $$d$$?
-TODO: generalized selection algorithm to choose $$d$$?
--> whitening
+Important to consider data size for feasibility of methods. For initial approaches, we're going to use whole Gram-matrix representations, so we need to hold all $$N^2$$ doubles in memory. At `8B` for a packed double, when we're testing on our machines, we're already limited to `sqrt(8GB/8B)`, or only about `~30K` rows!
 
-algs: (new papers for new ones, old for old)
-MDS
-Isomap
-LLE
-PCA
-sklearn (test out)
+Remember every recent day is about `250K` rows.
+
+Solutions:
+
+* Most recent `~100` rows, then **randomly sample** (we can weigh sampling by a function of the columns, since this is a linear-in-size operation) from previous days' rows.
+* Use `cycles.cs.princeton.edu`, with `256GB` ram, boosting us to `~100K` rows.
+* Download more RAM.
+* If manual distance can be specified, just do disk seeks for distance searches. If this is too slow, we can sort files and then make them smaller. If this is too slow, we can use a SQLite instance.
+
+Last one is a lot of work, but probably the most enabling.
+
+#### Dimensionality Reduction Algorithms
+
+Only have distance to work with, and no intuition for the manifold of event space. Will have to try various embedding approaches.
+
+1. Multidimensional Scaling
+
+Assumptions
+Math
+sklearn
+runtime
+
+2. Isomap
+3. LLE
+4. PCA
+
+test out sklearn
