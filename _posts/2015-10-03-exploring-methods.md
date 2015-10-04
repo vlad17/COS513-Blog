@@ -2,7 +2,7 @@
 layout: post
 category : class-posts
 tagline:
-tags : [exploratory-analysis,data]
+tags : [exploratory-analysis,data,methods,dimensionality-reduction,logit,categorical,pca,lle,isomap,mds]
 ---
 {% include JB/setup %}
 
