@@ -113,4 +113,15 @@ $$\text{max} \mathbb{P} (\text{Data}_t | O_t)$$
   - Used to optimize parameters of neural nets, decision trees, etc
 
 
+### Performance Validation
+
+We care about profit rather than model error. We can define a profit function as follows:\\
+$$\begin{equation}
+\text{Profit} = \Big(\dfrac{\text{money obtained}}{\text{seed money}}\Big)^{\dfrac{52}{w}} - 1
+\end{equation}$$
+
+where we use our model to invest a fixed variable percentage of our money on a weekly basis.
+
+Most related work uses model error, which we can compare with, but few researchers have put forth actual profit numbers (most likely the problem is fairly hard).
+
 
