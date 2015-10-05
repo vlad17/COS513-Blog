@@ -6,7 +6,7 @@ tags : [exploratory-analysis,data]
 ---
 {% include JB/setup %}
 
-# Week 1: Exploratory analysis
+# Week 1: Exploratory Analysis
 
 Our goal is to explain stock market behavior by relying on non-macroeconomic news sources. Using macroeconomic data is an obvious (and previously successful) approach, but using the highly diverse and worldwide event data from our dataset may reveal more interesting explanations for stock market behavior.
 
