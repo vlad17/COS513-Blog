@@ -6,7 +6,7 @@ tags : [exploratory-analysis,data,methods,dimensionality-reduction,logit,categor
 ---
 {% include JB/setup %}
 
-# Week 2: Exploratory analysis
+# Week 2: Exploring Methods
 
 ## Our Goal (to reiterate)
 
