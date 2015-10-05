@@ -67,6 +67,8 @@ Linear dimensionality reduction approaches all rely on finding a projection matr
 
     *Works well when* that the most of the magnitude of the difference vectors between points lies in the vector spaced produced by the solution hyperplane.
 
+    Incremental MDS algorithms exist - this helps avoid quadratic space cost (on-demand $$\rho$$) but the runtime is still superquadratic.
+
 3. **Locally Linear Embedding**
 
     [Roweis and Saul 2000](http://www.sciencemag.org/content/290/5500/2323). LLE is a nonlinear method which maintains the following invariant: for each data point's closest $$K$$ neighbors, the local linear approximation of the original point is maintained after the mapping.
