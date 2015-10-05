@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Princeton Finance Statistical Modeling Blog
+title: Princeton Commodities Modeling Blog
 tagline: 
 ---
 {% include JB/setup %}
