@@ -35,7 +35,7 @@ $$O^j_{t+1} := (x_{t+1}^{(i)} > x_t^{(i)}) = f(A_t \text{Data}_t) $$
 - Linear regression
 - [SVM]{http://www.researchgate.net/publication/4047521_SVM_based_models_for_predicting_foreign_currency_exchange_rates}: can also be non linear using a kernel 
 
-# Non linear models
+#### Non linear models
 We want a probabilistic framework for modeling a time series 
 - Hidden Markov Models
   - hidden states, output states, transition probabilities between states
@@ -44,11 +44,18 @@ We want a probabilistic framework for modeling a time series
   - given past time series data we want to input a new data point (some news event) which might change our regime/hidden state
   - use generalized expectation-maximization to compute maximum likelihood estimates and posterior estimates for transitions and outputs
   
-=======
-#### Non linear models
-- Hiden Markov Models
-
 - Genetic Algorithms
   - used to optimize parameters of neural net, decision tree, etc
   - 
 - Neural network
+
+#### Fuzzification
+We want to predict financial time series movement
+Is it enough to stop at predicting price up vs price down?
+Piramuthu 1999, Kodogiannis and Lolis 2002, Lai et al 2009, Chen 2011
+![Fuzzification Example](/assets/fuzzification_example.jpg){: .center-image }
+
+
+
+
+
