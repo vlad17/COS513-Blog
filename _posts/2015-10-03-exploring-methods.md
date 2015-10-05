@@ -21,7 +21,7 @@ Initially, we'll be trying just to find, for a given $$i$$, $$f(\{r_n\}_{n\,=\,0
 
 ## Approach
 
-1. Previous exploration has indicated there is some aspect of lower dimenality in $$R$$ - agents would only interact with a small subset of other agents, each agent would only be affected by small subsets of types of events. Thus we'd like to reduce from $$R$$ to $$\mathbb{R}^d$$ for $$d < 54$$.
+1. Previous exploration has indicated there is some aspect of lower dimenality in $$R$$ - agents would only interact with a small subset of other agents, each agent would only be affected by small subsets of types of events. Thus we'd like to reduce from $$R$$ to $$\mathbb{R}^d$$ for $$d < \dim R$$.
 2. Evaluate what features we can extract from $$\{\textbf{x}_{t\,=\,t_0-N}^{t_0}\}$$ alone - according to previous readings, summary statistics, such as moving averages, have some predictive power.
 3. Develop our forecasting model - consider the various regression methods for finding $$f$$.
 
