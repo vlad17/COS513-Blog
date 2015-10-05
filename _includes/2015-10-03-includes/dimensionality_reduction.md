@@ -75,7 +75,7 @@ Linear dimensionality reduction approaches all rely on finding a projection matr
 
     Assumes that the points lie near some differentiable manifold in the the high-dimensional space, and performs well for manifolds isomorphic to a hyperplane.
 
-**Uh-oh!** Note we only have $$G=XX^\top$$, not $$X$$, to work with! So even if we find $$P$$, what would we apply it to? We need some initial mapping $$k:R\rightarrow\mathbb{R}^D$$ which respects $$G$$. At that point the reduction is just $$PK$$, where $$\boldsymbol{\delta}_n^\top K=k(r_n)^\top$$. $$D$$ should be approximately equal to the number of columns (our original dimension), but it's a pretty hard problem to reconstruct $$X$$ for small $$D$$ from $$G$$.
+**Uh-oh!** Note we only have $$G=XX^\top$$, not $$X$$, to work with! So even if we find $$P$$, what would we apply it to? We need some initial mapping $$k:R\rightarrow\mathbb{R}^D$$ which respects $$G$$. At that point the reduction is just $$PK$$, where $$\boldsymbol{\delta}_n^\top K=k(\textbf{r}_n)^\top$$. $$D$$ should be approximately equal to the number of columns (our original dimension), but it's a pretty hard problem to reconstruct $$X$$ for small $$D$$ from $$G$$.
 
 If $$D=M$$, it's easy - that's just the Cholesky Decomposition. However, then our data matrix is just as large as our Gram matrix, and this isn't very scalable.
 
