@@ -38,13 +38,6 @@ Two strategies: buying and selling whole amount when increase/decrease predicted
 - $$L_2$$ error between the real price movements and the prediction of the estimator
 - Logarithmic Loss
 
-### Result validation
-- Dividing the set in two: training and testing
-- Cross validation doesn't always make sense (look ahead bias)
-- Develop a trading strategy and use on the market
-
-We can think about the 
-At time $t$, let $B_t \in \mathbb{R}^d$ represent the data that we know at time $t$ (news events, past prices of commodities), and we want to find the best estimator $f$ of  
 
 # Algorithms 
 
@@ -111,9 +104,11 @@ $$\text{max} \mathbb{P} (\text{Data}_t | O_t)$$
 
 #####Genetic Algorithms
   - Used to optimize parameters of neural nets, decision trees, etc
-
-
-### Performance Validation
+  
+### Result validation
+- Divide the set in two: training and testing
+- Cross validation doesn't always make sense (look ahead bias)
+- Develop a trading strategy and use on the market
 
 We care about profit rather than model error. We can define a profit function as follows:\\
 $$\begin{equation}
@@ -123,5 +118,6 @@ $$\begin{equation}
 where we use our model to invest a fixed variable percentage of our money on a weekly basis.
 
 Most related work uses model error, which we can compare with, but few researchers have put forth actual profit numbers (most likely the problem is fairly hard).
+
 
 
