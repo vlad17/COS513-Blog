@@ -75,7 +75,7 @@ $$\text{max} \mathbb{P} (\text{Data}_t | O_t)$$
 - [Fuzzification of Discrete Attributes From Financial Data in Fuzzy Classification Trees](http://www.researchgate.net/publication/224599514_Fuzzification_of_Discrete_Attributes_From_Financial_Data_in_Fuzzy_Classification_Trees)
 - Piramuthu 1999, Kodogiannis and Lolis 2002, Lai et al 2009, Chen 2011
 
-![Fuzzification Example](/assets/fuzzification_example.jpg){: .center-image }
+![Fuzzification Example]({{ stie.url }}/assets/fuzzification_example.JPG){: .center-image }
 
 - After fuzzification and prediction, defuzzify to retrieve nonfuzzy prediction
 - Allows for human domain knowledge to influence system
@@ -100,7 +100,7 @@ $$\text{max} \mathbb{P} (\text{Data}_t | O_t)$$
     - If $$x = A_{2}$$ and $$y = B_{2} \implies f_{2} = p_{2}x + q_{2}y + r_{2}$$
     - $$A_{i}$$ and $$B_{i}$$ are fuzzy sets
    
-  ![Fuzzy Neural Net](/assets/fuzzy_neural_net.jpg){: .center-image }
+![Fuzzy Neural Net]({{ stie.url }}/assets/fuzzy_neural_net.jpg){: .center-image }
 
 #####Genetic Algorithms
   - Used to optimize parameters of neural nets, decision trees, etc

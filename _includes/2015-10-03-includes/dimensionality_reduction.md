@@ -105,7 +105,7 @@ General approach, really it just transforms $$\rho$$ into $$\rho'$$, and can be 
 
 [Tenenbaum, Silva, and Langford 2000](http://wearables.cc.gatech.edu/paper_of_week/isomap.pdf). Isomap works by taking a neighborhood graph, then recomputing distances based on the shortest path through the neighborhood graph, and then applying classical reduction techniques. Thus we can only traverse to nodes through neighbors. This enlarges distances to be more "intrinsic" to our manifold:
 
-![spiral](/assets/spiral.png){: .center-image }
+![spiral]({{ stie.url }}/assets/spiral.png){: .center-image }
 
 Isomap doesn't have the same requirement of hyperplane isomorphism that LLE does, but needs a shortest path computation over all nodes for the new metric it uses. This is done by the Floyd–Warshall algorithm, but in $$O(M^3)$$.
 
