@@ -4,6 +4,7 @@ category : class-posts
 tagline:
 tags : [exploratory-analysis,data,methods,dimensionality-reduction,logit,hmm,leveldb,t-sne]
 ---
+
 {% include JB/setup %}
 
 # Week 3: Initial Predictions
@@ -62,3 +63,16 @@ Nonetheless, there are some definitive clusters already. The extracted columns u
 "Actor2Geo_FullName", "URL"}
 
 {% endhighlight mma %}
+
+#### HMM Results
+
+Clustering data points into: up trend / down trend
+Feeding only the actual prices to the HMM is not sufficient, because the trends are not very clear in commodities (by opposition to stocks for example) => erratic predictions. We remedy to this problem by adding the moving average as input so that the model is more stable.
+
+
+![XAU hmm out]({{ stie.url }}/assets/xau-hmm.png ){: .center-image }
+![XAG hmm out]({{ stie.url }}/assets/xag-hmm.png ){: .center-image }
+
+Train data in different clusters independently using a linear model.
+
+
