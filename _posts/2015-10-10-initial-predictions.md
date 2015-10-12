@@ -4,6 +4,7 @@ category : class-posts
 tagline:
 tags : [exploratory-analysis,data,methods,dimensionality-reduction,logit,hmm,leveldb,t-sne]
 ---
+
 {% include JB/setup %}
 
 # Week 3: Initial Predictions
@@ -36,3 +37,14 @@ Extracted columns (with additional preprocessing):
 "Actor2Geo_FullName", "URL"}
 
 {% endhighlight mma %}
+
+#### HMM review 
+
+Clustering data points into: up trend / down trend
+
+![XAU hmm out]({{ stie.url }}/assets/xau-hmm.png ){: .center-image }
+![XAG hmm out]({{ stie.url }}/assets/xag-hmm.png ){: .center-image }
+
+Train data in different clusters independently using a linear model.
+
+
