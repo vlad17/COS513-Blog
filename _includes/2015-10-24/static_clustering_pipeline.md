@@ -16,7 +16,7 @@ The data has several stages (numbers below are accurate to within the order of m
 
 **Expanding** refers to transforming the preprocessed data into wide numerical feature vectors. 
 
-**Clustering** refers to classifying expanded data according to a $$K$$-means model. 
+**Clustering** refers to classifying expanded data according to a $$K$$-means model. This model is computed beforehand from a static random sample of our data.
 
 **Conglomeration** coalesces a day's data, in a manner that will be described shortly.
 
@@ -38,19 +38,25 @@ For the actual regression, for each day, we:
 
 Finally, for each set of GLM hyper paramters, we learn and validate on the concatenated output of (3) from above.
 
-#### Diagram
-
-[TODO INSERT]
-
-#### Schemas
+#### Preprocessing stage
 
 _Raw data_: 58 columns, mixed types
 
 _Preprocessed data_: 19 columns, numeric, categorical, or string (coming soon!). Categorical values are represented as integers in $$[1, N]$$, with 0 representing an empty cell. When expanded to the one-hot encoding, 0 doesn't get its own value (it'd be wrong to learn off missing data - **or is it?**).
 
+![preproces-img](/assets/preprocess.png){: .center-image }
+
+#### Expansion stage
+
 _Expanded data_: 945 columns, all numeric.
 
+![expand-img](/assets/expand.png){: .center-image }
+
+### Cluster stage
+
 _Coalesced data_: 1 row, $$(K+1)(I+1)$$ columns, where $$I$$ is the number of "importance-related" columns.
+
+![cluster-img](/assets/cluster_and_transform.png){: .center-image }
 
 _Label data_: Time series of prices. We generate day-to-day diffs from this. It's small enough to fit in memory and generate on the fly.
 
