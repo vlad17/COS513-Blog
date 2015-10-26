@@ -20,7 +20,7 @@ The data has several stages (numbers below are accurate to within the order of m
 
 **Conglomeration** coalesces a day's data, in a manner that will be described shortly.
 
-We parallelized usually to the maximum possible on cycles.cs.princeton.edu: 48. Parallelizing along the following for-loops:
+We parallelized usually to the maximum possible on `cycles.cs.princeton.edu`: `48`. Parallelizing along the following for-loops:
 
 To learn the $$K$$-means, we first perform for each day:
 
@@ -59,6 +59,8 @@ _Coalesced data_: 1 row, $$(K+1)(I+1)$$ columns, where $$I$$ is the number of "i
 ![cluster-img](/assets/cluster_and_transform.png){: .center-image }
 
 _Label data_: Time series of prices. We generate day-to-day diffs from this. It's small enough to fit in memory and generate on the fly.
+
+**Importantly**, we divide each day's summary vector (the result of the matrix multiply and subsequent flatten) by the number of rows $$N$$ for that day, so days aren't skewed by event counts (consider the final constant column).
 
 #### Generalized Linear Model
 
