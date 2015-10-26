@@ -18,22 +18,4 @@ tags : [K-means,Word2Vec]
 
 ## Future Work
 
-{% include 2015-10-24/future_work_.md %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
+{% include 2015-10-24/future_work.md %}
