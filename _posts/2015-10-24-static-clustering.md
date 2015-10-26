@@ -9,10 +9,8 @@ tags : [K-means,Word2Vec]
 # Week 5: Static Clustering Pipeline
 
 ## The Static Clustering Pipeline
-{% include assets/preprocess.png %}
-{% include assets/expand.png %}
-{% include assets/cluster\_and\_transform.png %}
-{% include 2015-10-24/static\_clustering\_pipeline.md %}
+
+{% include 2015-10-24/static_clustering_pipeline.md %}
 
 ## Results
 {% include 2015-10-24/results.md %}
