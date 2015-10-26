@@ -24,7 +24,13 @@ Currently, the topic-columns are not scaled to their z-scores (the per-day paral
 
 **Question**: do we need to be careful to use an [unbiased estimator](https://en.wikipedia.org/wiki/Unbiased_estimation_of_standard_deviation) for $$\sigma$$? This isn't a true random sample anyway, would the correction even make sense? The point is just to scale the values to reasonable ranges.
 
-#### Grab bag of other stuff to try out later:
+#### Periodicity features
+
+Consider adding features like $$\sin \frac{d}{2\pi P}$$ or $$d % P$$ to capture periodicity. 
+
+**Question**: How to learn $$P$$? As a hyperparameter, or is there a more intelligent way.
+
+#### More stuff
 
 1. Smarter clustering: Don't create a sparse binary matrix of clustered news, create a matrix of posteriors for a news-GMM.
 2. Nonparametric clustering: Infinite GMM, HDP, SN&Gamma;P
