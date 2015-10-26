@@ -14,6 +14,8 @@ We initially tried Brown's NLTK corpus with quadgrams. Unfortunately, common act
 
 After we expand the corpus to a larger (still _static_) one, we can utilize some of GDELT's string column features by expanding them to $$\mathbb{R}^D$$ in the expand phase.
 
+An interesting alternative is to use a **dynamic** corpus, learning off of the GDELT news articles themselves (involves scraping the URLs).
+
 #### Normalization and scale
 
 Currently, the topic-columns are not scaled to their z-scores (the per-day parallelism would break down if we computed the data-set-wide $$\mu,\sigma$$). This negatively impacts clustering because high-magnitude columns dominate distance.
