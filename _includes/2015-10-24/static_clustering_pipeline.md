@@ -54,7 +54,7 @@ _Expanded data_: 945 columns, all numeric.
 
 ### Cluster stage
 
-_Coalesced data_: 1 row, $$(K+1)(I+1)$$ columns, where $$I$$ is the number of "importance-related" columns.
+_Coalesced data_: 1 row, $$(K+1)(I+1)$$ columns, where $$I$$ is the number of "importance-related" columns (note minor typo in last stage below).
 
 ![cluster-img](/assets/cluster_and_transform.png){: .center-image }
 
