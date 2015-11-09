@@ -11,14 +11,20 @@ tagline:
 
 Using `ionic` cluster with SLURM scheduling script, we can increase the number of processors for our day-summary pipeline. This turned our previous multi-day cycles pipeline into an overnight one.
 
+![slurm-time](/assets/slurm-completion-1.png){: .center-image }
+
+Note: above is estimated completion time on a partial sample (scaled by a factor of 10).
+
 Still could take advantage of more parallelism, but the next step up is generally hidden from undergrads.
 
 ## Changes to the Pipeline
 
+## Word2Vec representation of actor names
+
+We trained a Word2Vec model with window size 5 on The Europarl parallel corpus, which is the extracted proceedings of the European Parliament 1994 to 2011. It contains 53.9M words in 2.2M sentences and covers topics such as politics, agriculture, economics, military and science. We used this W2V model to represent actor names as a real-valued vector in which PMI information is encoded. 
+
 # K-Means to Infinite GMM
 {% include 2015-11-08/igmm.md %}
-
-# todo sean w2v
 
 # Time Series Analysis
 
