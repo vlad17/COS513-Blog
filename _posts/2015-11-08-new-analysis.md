@@ -23,4 +23,7 @@ Still could take advantage of more parallelism, but the next step up is generall
 
 # todo ghassen
 
-# todo tom
+# Running Logistic Regression and SVM on data from 20130401 to 20151101
+
+
+{% include 2015-11-08/SVM.md %}
