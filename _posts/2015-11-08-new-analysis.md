@@ -11,14 +11,16 @@ tagline:
 
 Using `ionic` cluster with SLURM scheduling script, we can increase the number of processors for our day-summary pipeline. This turned our previous multi-day cycles pipeline into an overnight one.
 
+![slurm-time](/assets/slurm-completion-1.png){: .center-image }
+
+Note: above is estimated completion time on a partial sample (scaled by a factor of 10).
+
 Still could take advantage of more parallelism, but the next step up is generally hidden from undergrads.
 
 ## Changes to the Pipeline
 
 # K-Means to Infinite GMM
 {% include 2015-11-08/igmm.md %}
-
-# todo sean w2v
 
 # Time Series Analysis
 
