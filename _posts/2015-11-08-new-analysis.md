@@ -29,10 +29,13 @@ We trained a Word2Vec model with window size 5 on The Europarl parallel corpus, 
 # Time Series Analysis
 
 ## Exploration of the new time series: XAG = Silver Ounce Rates
+
 ![chart](/assets/Chart.PNG){: .center-image }
+
 We started by exploring the PACF graph to understand the autocorrelations between the lags and we found the following graph.
 This graph demonstrates that at any point in the time series, the value is correlated with the value at lags: 1, 20, 41, 49, 87, 100...
 We could also have seasonality given the range of the autocorrelated lags but none of the standard forecast() R libraries managed to confirm the seasonality of the time series (tbats(x) returned a NULL period).
+
 ![pacf](/assets/PACF.PNG){: .center-image }
 ![pacf2](/assets/PACF2.PNG){: .center-image }
 
@@ -62,7 +65,7 @@ in order and including them only if they are stil significant when inserted into
 ### Error Measure:
 We're currently using the Mean Absolute Error (MAE) to quantify the error rate of our predictions. However, as discussed earlier (and unfortunately still not implemented) we're leaning towards adopting an measure similar to the Information Ratio in the future. 
 Accordingly, our evaluation of the forecasting would be binary, at each day the forecasting is correct if the forecast is in the same direction as the actual value with respect to the moving average (or start of the window) and if the difference in magnitudes is greater than a certain threshold (determined by the volatility over a given number of recent days).
-[insert the explanatory diagram]
+
 
 ### Trading Strategy:
 Given that our main goal is not only to build a statistically robust model but to also be able to build a trading strategy out of it.
