@@ -63,7 +63,7 @@ This optimization method allows us to apply our trading strategy in real time as
 [insert the WalkForward diagram]
 Eventually, we will have to deal with evaluating K as a hyperparameter: how many days do we need to look back to for the training. As for h, it can be evaluated for any model based on the imminen increase of test error as h increases.
 
-# Running Logistic Regression and SVM on data from 20130401 to 20151101
 
+# Logistic Regression and SVM
 
 {% include 2015-11-08/SVM.md %}
