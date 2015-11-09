@@ -9,13 +9,19 @@ tagline:
 
 ## SLURM Integration
 
-Using `ionic` cluster with SLURM scheduling script, we can increase the number of processors for our day-summary pipeline. This turned our previous multi-day cycles pipeline into an overnight one.
+Using `ionic` cluster with SLURM scheduling script, we can increase the number of processors for our day-summary pipeline. This took a lot of annoying sysadmin work (libc version was different between cluster computers), but in the end was very successful.
 
 ![slurm-time](/assets/slurm-completion-1.png){: .center-image }
 
-Note: above is estimated completion time on a partial sample (scaled by a factor of 10).
+**End to end runtime**: 1 hour! Much less than `cycles`-only, which was >1 day.
 
-Still could take advantage of more parallelism, but the next step up is generally hidden from undergrads.
+Still could take advantage of more parallelism, but the next steps up (Della/Hecate/Orbital/Tiger clusters) are generally hidden from undergrads. We'll probably stick to `ionic`.
+
+**Future improvements**
+
+  1. Can parallelize sample expansion and learning with full-day expansion
+  2. Make some easy optimizations to the Python code itself soe we can run more processes at the same time (bottlenecked by memory usage)
+  3. Nicer error handling.
 
 ## Changes to the Pipeline
 
