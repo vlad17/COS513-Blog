@@ -15,7 +15,8 @@ Still could take advantage of more parallelism, but the next step up is generall
 
 ## Changes to the Pipeline
 
-# todo daway IGMM
+# K-Means to Infinite GMM
+{% include 2015-11-08/igmm.md %}
 
 # todo sean w2v
 
