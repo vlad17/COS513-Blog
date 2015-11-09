@@ -11,9 +11,11 @@ tagline:
 
 Using `ionic` cluster with SLURM scheduling script, we can increase the number of processors for our day-summary pipeline. This took a lot of annoying sysadmin work (libc version was different between cluster computers), but in the end was very successful.
 
+Note that below the _Expansion_ stages include _Preprocessing_, see the previous post for details of what each stage does.
+
 ![slurm-time](/assets/slurm-completion-1.png){: .center-image }
 
-**End to end runtime**: 1 hour! Much less than `cycles`-only, which was >1 day.
+**End to end runtime**: 55 minutes! Much less than `cycles`-only, which was more than 1.5 days.
 
 Still could take advantage of more parallelism, but the next steps up (Della/Hecate/Orbital/Tiger clusters) are generally hidden from undergrads. We'll probably stick to `ionic`.
 
