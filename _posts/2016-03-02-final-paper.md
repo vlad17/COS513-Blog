@@ -2,7 +2,7 @@
 layout: post
 category : class-posts
 tagline:
-tags : [negative-results,t-SNE,HMM]
+tags :
 ---
 {% include JB/setup %}
 
