@@ -8,19 +8,15 @@ tags : [negative-results,t-SNE,HMM]
 
 # Week 4: tSNE Pipeline Results
 
+This week's blog post will be a bit sparse - the paper draft was due today.
+
 ## The tSNE learning pipeline
 
-Include whitening
-
-Implementation details - python c++. [TODO: point to repos, commit number in COS513-Finance].
+Please see the final paper for details.
 
 ## Results
 
-[TODO runtime here]
-
-Mostly negative [TODO exact results here]
-
-data size
+Mostly negative.
 
 ## Why?
 
