@@ -10,10 +10,7 @@ tags : [exploratory-analysis,data,methods,dimensionality-reduction,logit,categor
 
 ## Our Goal (to reiterate)
 
-We have the raw news data time series:
-$$
-\{\textbf{r}_n\}_{n=0}^{M}, \textbf{r}_t\in R
-$$, where $$R$$ is a 54-tuple over mostly categorical variables and we have $$M$$ news history.
+We have the raw news data time series: $$ \{\textbf{r}_n\}_{n=0}^{M}, \textbf{r}_t\in R $$, where $$R$$ is a 54-tuple over mostly categorical variables and we have $$M$$ news history.
 
 We also have $$\{x_t^{(i)}\}_{t=t_0-N}^{t_0}$$, the time series data for EOD commodity price of the $$(i)$$-th commodity on the $$t$$-th day, in $$\mathbb{R}_+$$.
 
