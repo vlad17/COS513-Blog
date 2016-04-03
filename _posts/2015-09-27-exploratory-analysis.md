@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 category : class-posts
 tagline:
 tags : [exploratory-analysis,data]
