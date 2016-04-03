@@ -31,6 +31,10 @@ Still could take advantage of more parallelism, but the next steps up (Della/Hec
 
 We trained a Word2Vec model with window size 5 on The Europarl parallel corpus, which is the extracted proceedings of the European Parliament 1994 to 2011. It contains 53.9M words in 2.2M sentences and covers topics such as politics, agriculture, economics, military and science. We used this W2V model to represent actor names as a real-valued vector in which PMI information is encoded. 
 
+### Results of using word vectors for actor names
+
+Entity recognition in excess of 90%, will try t o re-run with the added w2v models.
+
 # K-Means to Infinite GMM
 {% include 2015-11-08/igmm.md %}
 
