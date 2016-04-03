@@ -1,6 +1,5 @@
 ---
 layout: post
-category : class-posts
 tagline:
 tags : [exploratory-analysis,data]
 ---
