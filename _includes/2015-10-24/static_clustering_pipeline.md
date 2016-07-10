@@ -44,19 +44,19 @@ _Raw data_: 58 columns, mixed types
 
 _Preprocessed data_: 19 columns, numeric, categorical, or string (coming soon!). Categorical values are represented as integers in $$[1, N]$$, with 0 representing an empty cell. When expanded to the one-hot encoding, 0 doesn't get its own value (it'd be wrong to learn off missing data - **or is it?**).
 
-![preproces-img](/assets/preprocess.png){: .center-image }
+![preproces-img]({{ BASE_PATH }}/assets/preprocess.png){: .center-image }
 
 #### Expansion stage
 
 _Expanded data_: 945 columns, all numeric.
 
-![expand-img](/assets/expand.png){: .center-image }
+![expand-img]({{ BASE_PATH }}/assets/expand.png){: .center-image }
 
 ### Cluster stage
 
 _Coalesced data_: 1 row, $$(K+1)(I+1)$$ columns, where $$I$$ is the number of "importance-related" columns (note minor typo in last stage below).
 
-![cluster-img](/assets/cluster_and_transform.png){: .center-image }
+![cluster-img]({{ BASE_PATH }}/assets/cluster_and_transform.png){: .center-image }
 
 _Label data_: Time series of prices. We generate day-to-day diffs from this. It's small enough to fit in memory and generate on the fly.
 

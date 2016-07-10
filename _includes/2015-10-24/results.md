@@ -46,6 +46,6 @@ F1:
 
 Overall train and test errors as a function of $$K$$ can be seen here. Models were retrained 20 times each.
 
-![preproces-img](/assets/error_v_clusters.png){: .center-image }
+![preproces-img]({{ BASE_PATH }}/assets/error_v_clusters.png){: .center-image }
 
 **NOTE FOR FULL DISCLOSURE**: We computed the clusters on the a large part of dataset, but due to time constraints had to run initial predictions on the subset of the data that was clustered and coalesced, which did not at the time include the few most recent months reserved for testing. As a result, test data **was used for computing K-means**. We think this may inflate test accuracy slightly. However, the clusters were also computed from samples of days far in the future of the test data, so those likely had a cancelling adverse effect. In any case, these initial exploratory results are just hints at a possible signal.

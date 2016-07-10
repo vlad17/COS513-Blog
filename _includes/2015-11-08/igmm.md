@@ -1,4 +1,4 @@
-![kmeans-img](/assets/kmeans.jpg){: .center-image }
+![kmeans-img]({{ BASE_PATH }}/assets/kmeans.jpg){: .center-image }
 
 $$K$$-means defines hard clusters
 GMMs are appealing because GMMs will generalize clustering to use information about the covariance of the data
@@ -20,5 +20,5 @@ Set at 1 (Rasmussen uses 3.5)
 Has $$N$$ to limit the maximum number of components
 $$N=5000$$ since we want to approximate an infinite model
 
-![kmeans-img](/assets/igmm.png){: .center-image }
+![kmeans-img]({{ BASE_PATH }}/assets/igmm.png){: .center-image }
 

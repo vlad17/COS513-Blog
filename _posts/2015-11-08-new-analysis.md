@@ -13,7 +13,7 @@ Using `ionic` cluster with SLURM scheduling script, we can increase the number o
 
 Note that below the _Expansion_ stages include _Preprocessing_, see the previous post for details of what each stage does.
 
-![slurm-time](/assets/slurm-completion-1.png){: .center-image }
+![slurm-time]({{ BASE_PATH }}/assets/slurm-completion-1.png){: .center-image }
 
 **End to end runtime**: 55 minutes! Much less than `cycles`-only, which was more than 1.5 days.
 
@@ -42,14 +42,14 @@ Entity recognition in excess of 90%, will try t o re-run with the added w2v mode
 
 ## Exploration of the new time series: XAG = Silver Ounce Rates
 
-![chart](/assets/Chart.PNG){: .center-image }
+![chart]({{ BASE_PATH }}/assets/Chart.PNG){: .center-image }
 
 We started by exploring the PACF graph to understand the autocorrelations between the lags and we found the following graph.
 This graph demonstrates that at any point in the time series, the value is correlated with the value at lags: 1, 20, 41, 49, 87, 100...
 We could also have seasonality given the range of the autocorrelated lags but none of the standard forecast() R libraries managed to confirm the seasonality of the time series (tbats(x) returned a NULL period).
 
-![pacf](/assets/PACF.PNG){: .center-image }
-![pacf2](/assets/PACF2.PNG){: .center-image }
+![pacf]({{ BASE_PATH }}/assets/PACF.PNG){: .center-image }
+![pacf2]({{ BASE_PATH }}/assets/PACF2.PNG){: .center-image }
 
 ## Fitting with a fixed window + AIC/Likelihood/Significance measures:
 
@@ -87,7 +87,7 @@ For the testing, we're considering using Quantopian for evaluating our trading a
 Assume you need at least k observations to produce a reliable forecast(need last 5 lags for the AutoRegressive model, for example) The way it works is by setting an origin (k+i-1) based on which the forecast rolls foreward in time. At each i (from 1 to T-k), we use the observations at time 1->k+i-1 to estimate the forecasting model and compute the error on the forecast for time k+i: One-Step Forecast.
 However, one-step might not be as relevant as multi-step (e.g. long-term trading strategies). In that case, rolling forecasting origin can be modified to allow multi-step errors to be calculated. In that case, if we were to compute h-step-ahead forecasts, our origin would be k+h+i-1. We would use the observations from 1 to k+i-1 in order to estimate the forecasting model and compute the h-step error on the forecast for time k+h+i-1. Depending on the AR model, the h-step-ahead could be fully dependent on the observations or be a recursive forecast.
 This optimization method allows us to apply our trading strategy in real time as it continues to lear as new data becomes available. Additionally, it adapts to changes in the markets instead of being anchored to old time series data.
-![Walk-Forward](/assets/WalkForward.PNG){: .center-image }
+![Walk-Forward]({{ BASE_PATH }}/assets/WalkForward.PNG){: .center-image }
 Eventually, we will have to deal with evaluating K as a hyperparameter: how many days do we need to look back to for the training. As for h, it can be evaluated for any model based on the imminen increase of test error as h increases.
 
 

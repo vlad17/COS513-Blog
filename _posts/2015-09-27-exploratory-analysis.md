@@ -97,7 +97,7 @@ To achieve that, GDELT Project monitors the world's broadcast, print, and web ne
 The GDELT provides a knowledge graph that describes not only “what” happened but “how” it happened. Accordingly,  as the GDELT Global Knowledge Graph processes each news article it extracts a list of all people, organizations, locations, and themes from that article and concatenates them together to form a unique "key" that represents that particular combination of names, locations, and themes. All articles containing that same unique combination of names, locations, and themes, regardless of how similar the rest of the text is, are grouped together into a "nameset". The Graph provides a daily intensity weighting which essentially weights each day towards those that occur in the greatest diversity of contexts, biasing towards days with many different contexts being discussed. It is relatively immune to sudden massive bursts of coverage (such as from a major sudden situation) and instead tends to capture the broadest temporal trends. This can be used to evaluate the magnitude of events/turmoil witness each day, in every country.
 
 
-![Turmoil in the first 7 days of July](/assets/First_Week_July_15.PNG){: .center-image }
+![Turmoil in the first 7 days of July]({{ BASE_PATH }}/assets/First_Week_July_15.PNG){: .center-image }
 
 #### Data Volume
 
@@ -119,11 +119,11 @@ The CAMEO code enables for numeric categorization of events. Since the dimension
 2. Supports state and non-state actors, as well as regional and ethnic categorization.
 3. Location information makes sense in the context of a cameo label
 
-![Example CAMEO label]({{ stie.url }}/assets/cameo-example.png){: .center-image }
+![Example CAMEO label]({{ BASE_PATH }}/assets/cameo-example.png){: .center-image }
 
-![Code 190 Map](/assets/code_190_map.png){: .center-image }
-![Code 192 Map](/assets/code_192_map.png){: .center-image }
-![Code 194 Map](/assets/code_194_map.png){: .center-image }
+![Code 190 Map]({{ BASE_PATH }}/assets/code_190_map.png){: .center-image }
+![Code 192 Map]({{ BASE_PATH }}/assets/code_192_map.png){: .center-image }
+![Code 194 Map]({{ BASE_PATH }}/assets/code_194_map.png){: .center-image }
 
 This set of maps shows how news information will intersect with geographic locations. The data plotted is the week of March 1st, 2015. Each dot corresponds to an event labeled with the code indicated. Code 190 represents general conflict data and is useful for seeing the general spread of data. Of note are Brazil, Russia, and China, which either have or report very few conflicts in their news. Code 192 (occupy territory) shows how the labelling of news can be imprecise. Code 194 (armed conflict) shows there there are meaningful local patterns to be found. 
 
@@ -164,7 +164,7 @@ cols = {"GLOBALEVENTID", "SQLDATE", "MonthYear", "Year",
 
 "EventCode", "EventBaseCode", "EventRootCode" - hierarchical CAMEO code for event classification (see Event hierarchy chart below)
 
-![CAMEO Hierarchy](/assets/EventHierarchysm.png){: .center-image }
+![CAMEO Hierarchy]({{ BASE_PATH }}/assets/EventHierarchysm.png){: .center-image }
  Phua, Clifton, et al. "Visual and Predictive Analytics on Singapore News: Experiments on GDELT, Wikipedia, and^ STI." arXiv preprint arXiv:1404.1996(2014).
 
 "QuadClass" - Material/Verbal Conflict/Cooperation classification
@@ -210,7 +210,7 @@ BoxWhiskerChart[{nActorsByActor1, nActorsByActor2}, "Outliers",
 
 {% endhighlight %}
 
-![BW-all-actors]({{ stie.url }}/assets/actors-raw-bw.png){: .center-image }
+![BW-all-actors]({{ BASE_PATH }}/assets/actors-raw-bw.png){: .center-image }
 
 5 number summaries:
 
@@ -223,7 +223,7 @@ Grid[{Text /@ {"# A2 by A1", "# A1 by A2"}, {Grid[n5Sum[nActorsByActor1]],
 
 {% endhighlight %}
 
-![BW-all-actors]({{ stie.url }}/assets/actors-raw-summary.png){: .center-image }
+![BW-all-actors]({{ BASE_PATH }}/assets/actors-raw-summary.png){: .center-image }
 
 One thing we already notice is that the distributions of actor/actee are pretty identical, so the event interactions are pretty symmetric in terms of frequency of occurences of actors. 
 
@@ -254,7 +254,7 @@ Histogram[{Pick[nActorsByActor1, infreqBit1],
 
 {% endhighlight %}
 
-![Infreq actors]({{ stie.url }}/assets/actors-infreq-hist.png){: .center-image }
+![Infreq actors]({{ BASE_PATH }}/assets/actors-infreq-hist.png){: .center-image }
 
 The above is an overlay of the historgrams. Again, very similar distributions, and, as we expect, we have an exponential decay in frequency. For the "infrequent" actors, it seems like events are sporadic, independent, and probabilistic occurences. Another intersting question to ask is among the infrequent actors, how many interactions are with other infrequents?
 
@@ -281,7 +281,7 @@ Histogram[{Pick[nActorsByActor1, freqBit1],
 
 {% endhighlight %}
 
-![freq actors]({{ stie.url }}/assets/actors-freq-hist.png){: .center-image }
+![freq actors]({{ BASE_PATH }}/assets/actors-freq-hist.png){: .center-image }
 
 Similar pattern as infrequent actors, perhaps at a different rate of exponential decay.
 
@@ -304,7 +304,7 @@ Histogram[{nEventsByA1, nEventsByA2},
 
 {% endhighlight %}
 
-![freq actors]({{ stie.url }}/assets/hist-event-actor.png){: .center-image }
+![freq actors]({{ BASE_PATH }}/assets/hist-event-actor.png){: .center-image }
 
 Again, very similar to the actor situation, we find that the event-actor graph is fairly sparse, in that few actors have very many events involved (which gives some indication of a lower dimensionality to the categorical data).
 
@@ -356,7 +356,7 @@ ggplot(news_data,aes(x=GoldsteinScale)) + geom_histogram(binwidth=0.5)
 
 {% endhighlight %}
 
-![Goldstein scale filename]({{ stie.url }}/assets/Histogram_Goldstein_Scale.png){: .center-image }
+![Goldstein scale filename]({{ BASE_PATH }}/assets/Histogram_Goldstein_Scale.png){: .center-image }
 
 {% highlight r %}
 
@@ -365,7 +365,7 @@ ggplot(news_data[news_data$NumMentions<30,],aes(x=NumMentions)) + geom_histogram
 
 {% endhighlight %}
 
-![Num mentions filename]({{ stie.url }}/assets/Histogram_Num_Mentions.png){: .center-image }
+![Num mentions filename]({{ BASE_PATH }}/assets/Histogram_Num_Mentions.png){: .center-image }
 {% highlight r %}
 
 # Histogram for Average Tone
@@ -385,7 +385,7 @@ ggplot(price_ret,aes(x=DailyReturn)) + geom_histogram()
 
 {% endhighlight %}
 
-![Daily return filename]({{ stie.url }}/assets/Histogram_Daily_Return.png){: .center-image }
+![Daily return filename]({{ BASE_PATH }}/assets/Histogram_Daily_Return.png){: .center-image }
 
 Volume of trading vs Average Number of Mentions
 
@@ -397,13 +397,13 @@ plot(coredata(merged_data$Volume), coredata(merged_data$NumMentions))
 
 {% endhighlight %}
 
-![Daily return filename]({{ stie.url }}/assets/Volume_vs_Num_Mentions.png){: .center-image }
+![Daily return filename]({{ BASE_PATH }}/assets/Volume_vs_Num_Mentions.png){: .center-image }
 
 There seems to be almost no correlation between the number of mentions and the price data.
 
 ## Commodities Exploration
 
-![Energies]({{ stie.url }}/assets/commodity-hist-energy.jpg){: .center-image }
-![Minerals]({{ stie.url }}/assets/commodity-hist-minerals.jpg){: .center-image }
+![Energies]({{ BASE_PATH }}/assets/commodity-hist-energy.jpg){: .center-image }
+![Minerals]({{ BASE_PATH }}/assets/commodity-hist-minerals.jpg){: .center-image }
 
-![Energies]({{ stie.url }}/assets/correlationmatrix.png){: .center-image }
+![Energies]({{ BASE_PATH }}/assets/correlationmatrix.png){: .center-image }

@@ -17,17 +17,17 @@ Approximation algorithm only relies on distance vectors, has linearithmic time a
 
 To give a brief glance into the paper (see last post for the link), here's the definition of the "similarity distribution" in high-dimensional space.
 
-![from, pij]({{ stie.url }}/assets/hidim-sim-exact.png){: .center-image }
+![from, pij]({{ BASE_PATH }}/assets/hidim-sim-exact.png){: .center-image }
 
 As you can expect, the KL divergence, which we're trying to optimize, will have a quadratic number of terms since there's $$O(N^2)$$ such $$p_{ij}$$.
 
 Thus, for faster computation, we need a smaller approximate representation, which relies on neighborhoods constructed from nearest neighbors $$\mathcal{N}_i$$.
 
-![from, pij approx]({{ stie.url }}/assets/hidim-sim-approx.png){: .center-image }
+![from, pij approx]({{ BASE_PATH }}/assets/hidim-sim-approx.png){: .center-image }
 
 Note for completeness the low-dimensional similarity is given by:
 
-![to, qij exact]({{ stie.url }}/assets/lodim-sim-exact.png){: .center-image }
+![to, qij exact]({{ BASE_PATH }}/assets/lodim-sim-exact.png){: .center-image }
 
 This is the exact form of the low-dimensional Student-t distribution. We never really compute it explicitly, since we don't actually care what the low-dimensionality similarity distribution $$Q$$ is, but rather only are concerned with the representation of the KL divergence - or, more precisely, its gradient, which we are optimizing with the projected values $$\textbf{y}_i$$.
 
@@ -41,17 +41,17 @@ Note the above step implies the use of a $$2^d$$-tree, where $$d$$ is the dimens
 
 Double-encoded MNIST (from paper, had PCA run initially to 50 dims for speed):
 
-![t-sne mnist]({{ stie.url }}/assets/tsne_map.png){: .center-image }
+![t-sne mnist]({{ BASE_PATH }}/assets/tsne_map.png){: .center-image }
 
 Byte-encoded MNIST (t-SNE only in [my fork](https://github.com/vlad17/bhtsne/tree/mnist)), `10000 imgs x (28x28) pixels` trains in 164s:
 
-![t-sne out]({{ stie.url }}/assets/mnist-color.png){: .center-image }
+![t-sne out]({{ BASE_PATH }}/assets/mnist-color.png){: .center-image }
 
 **GDELT**
 
 News data reduction. 2 days' worth of data - `326604 x 14` data matrix, with categories. Took <2 hrs. Just two instantiations for parameters, perplexity $$u = 30$$ for the high-dimensional distribution and cutoff $$\theta = 0.5$$ were used. Note the higher default perplexity causes the typical set to be larger, which in turn results in high standard deviations in the high-dimensional distribution. When encoded to the low-dimensional distribution, this means that all the points look like they're all just as similar to one another (because the high-dimensional kernels all look the same). In turn we have a tendency towards equidistance in the low dimensions, forcing the data to aggregate in a circular blob.
 
-![t-sne out]({{ stie.url }}/assets/news-data-initial.png){: .center-image }
+![t-sne out]({{ BASE_PATH }}/assets/news-data-initial.png){: .center-image }
 
 Nonetheless, there are some definitive clusters already. The extracted columns used were (with additional preprocessing):
 
@@ -70,8 +70,8 @@ Clustering data points into: up trend / down trend
 Feeding only the actual prices to the HMM is not sufficient, because the trends are not very clear in commodities (by opposition to stocks for example) => erratic predictions. We remedy to this problem by adding the moving average as input so that the model is more stable.
 
 
-![XAU hmm out]({{ stie.url }}/assets/xau-hmm.png ){: .center-image }
-![XAG hmm out]({{ stie.url }}/assets/xag-hmm.png ){: .center-image }
+![XAU hmm out]({{ BASE_PATH }}/assets/xau-hmm.png ){: .center-image }
+![XAG hmm out]({{ BASE_PATH }}/assets/xag-hmm.png ){: .center-image }
 
 Train data in different clusters independently using a linear model.
 

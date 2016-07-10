@@ -3,7 +3,7 @@ Previously, we used logistic regression to predict the price movements for silve
 
 The test accuracy as a function of $$K$$ for the best parameters can be seen here:
 
-![preproces-img](/assets/error_v_clusters.png){: .center-image }
+![preproces-img]({{ BASE_PATH }}/assets/error_v_clusters.png){: .center-image }
 
 Since this is not very convincing that our model outperforms the benchmark, we expanded our date range to `20130401`-`20151001`. There were 526 days for training, 207 days for validation and 152 days for testing. Out of the 152 days, the prices increased in 58 days (61.8% of the days were decreasing).
 
