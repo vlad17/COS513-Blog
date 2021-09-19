@@ -42,13 +42,14 @@ Entity recognition in excess of 90%, will try t o re-run with the added w2v mode
 
 ## Exploration of the new time series: XAG = Silver Ounce Rates
 
-![chart]({{ BASE_PATH }}/assets/xag.png){: .center-image }
+![chart]({{ BASE_PATH }}/assets/Chart.PNG){: .center-image }
 
 We started by exploring the PACF graph to understand the autocorrelations between the lags and we found the following graph.
 This graph demonstrates that at any point in the time series, the value is correlated with the value at lags: 1, 20, 41, 49, 87, 100...
 We could also have seasonality given the range of the autocorrelated lags but none of the standard forecast() R libraries managed to confirm the seasonality of the time series (tbats(x) returned a NULL period).
 
-![pacf]({{ BASE_PATH }}/assets/pacf.png){: .center-image }
+![pacf]({{ BASE_PATH }}/assets/PACF.PNG){: .center-image }
+![pacf2]({{ BASE_PATH }}/assets/PACF2.PNG){: .center-image }
 
 ## Fitting with a fixed window + AIC/Likelihood/Significance measures:
 
